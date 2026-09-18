@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Coffee } from "lucide-react";
 
 const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Products", path: "/products" },
-    { name: "Export Process", path: "/export-process" },
-    { name: "Certifications", path: "/certifications" },
-    { name: "Contact", path: "/contact" },
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Products", href: "#products" },
+    { name: "Export Process", href: "#export-process" },
+    { name: "Certifications", href: "#certifications" },
+    { name: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [active, setActive] = useState("Home");
 
     const toggleMenu = () => setIsOpen((prev) => !prev);
     const closeMenu = () => setIsOpen(false);
@@ -22,37 +22,36 @@ const Navbar = () => {
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
-                    <Link
-                        to="/"
+                    <a
+                        href="#home"
                         onClick={closeMenu}
                         className="flex items-center gap-2 text-xl font-bold text-amber-900"
                     >
-                        <span className="text-amber-700">☕</span>
-                        Highland Export Co.
-                    </Link>
+                        <Coffee className="text-amber-700" size={24} />
+                        Celin Coffee
+                    </a>
 
                     {/* Desktop Links */}
                     <div className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <NavLink
-                                key={link.path}
-                                to={link.path}
-                                className={({ isActive }) =>
-                                    `text-sm font-medium transition-colors duration-200 ${isActive
-                                        ? "text-amber-700"
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                onClick={() => setActive(link.name)}
+                                className={`text-sm font-medium transition-colors duration-200 ${active === link.name
+                                        ? "text-amber-700 font-semibold"
                                         : "text-gray-700 hover:text-amber-700"
-                                    }`
-                                }
+                                    }`}
                             >
                                 {link.name}
-                            </NavLink>
+                            </a>
                         ))}
-                        <Link
-                            to="/contact"
+                        <a
+                            href="#contact"
                             className="bg-amber-800 text-white text-sm font-semibold px-5 py-2 rounded-full hover:bg-amber-900 transition-colors duration-200"
                         >
                             Request Quote
-                        </Link>
+                        </a>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -71,25 +70,26 @@ const Navbar = () => {
                 <div className="md:hidden bg-white border-t border-gray-100 px-4 pb-4">
                     <div className="flex flex-col gap-4 pt-4">
                         {navLinks.map((link) => (
-                            <NavLink
-                                key={link.path}
-                                to={link.path}
-                                onClick={closeMenu}
-                                className={({ isActive }) =>
-                                    `text-base font-medium ${isActive ? "text-amber-700" : "text-gray-700"
-                                    }`
-                                }
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                onClick={() => {
+                                    setActive(link.name);
+                                    closeMenu();
+                                }}
+                                className={`text-base font-medium ${active === link.name ? "text-amber-700" : "text-gray-700"
+                                    }`}
                             >
                                 {link.name}
-                            </NavLink>
+                            </a>
                         ))}
-                        <Link
-                            to="/contact"
+                        <a
+                            href="#contact"
                             onClick={closeMenu}
                             className="bg-amber-800 text-white text-center font-semibold px-5 py-2 rounded-full hover:bg-amber-900 transition-colors duration-200"
                         >
                             Request Quote
-                        </Link>
+                        </a>
                     </div>
                 </div>
             )}
