@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Search, ChevronDown, ChevronRight } from "lucide-react";
-import logo from "../assets/logo.png";
+import logoEmblem from "../assets/logo-emblem.png";
 
 export default function Navbar({ currentPage = "home", setCurrentPage, onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -46,52 +46,49 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
     }
   };
 
-  // Header background: Transparent over hero image, with subtle top scrim; solid on scroll or non-home
-  const isTransparent = currentPage === "home" && !isScrolled;
-
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isTransparent
-          ? "bg-gradient-to-b from-black/85 via-black/35 to-transparent border-b border-white/5 py-3.5 sm:py-4"
-          : "bg-[#0C4533]/95 backdrop-blur-md border-b border-white/10 shadow-lg py-2.5 sm:py-3"
+        isScrolled
+          ? "bg-[#EBF6EE]/96 backdrop-blur-md border-b border-[#D2E9D6] shadow-sm py-2.5 sm:py-3"
+          : "bg-[#EBF6EE]/92 backdrop-blur-md border-b border-[#D5EAD9]/80 py-3 sm:py-3.5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           
-          {/* Brand Logo - Boldly visible with high-contrast badge and prominent white typography */}
+          {/* Brand Logo - Leaf & Bean Emblem + Clean Dual-Line Typography matching reference */}
           <button
             type="button"
             onClick={() => handleNavClick("home")}
-            className="flex items-center gap-3 group text-left cursor-pointer border-none bg-transparent"
+            className="flex items-center gap-2.5 sm:gap-3 group text-left cursor-pointer border-none bg-transparent"
           >
-            <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-white p-1 flex items-center justify-center shadow-lg shadow-black/50 ring-1 ring-white/30 group-hover:scale-105 transition-transform shrink-0">
+            <div className="h-9 w-9 sm:h-10 sm:w-10 relative shrink-0 flex items-center justify-center">
               <img
-                src={logo}
-                alt="Celin Coffee Logo"
-                className="h-full w-full object-contain"
+                src={logoEmblem}
+                alt="Celin Coffee Emblem"
+                className="h-full w-auto object-contain transition-transform group-hover:scale-105"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-base sm:text-lg font-black tracking-wider text-white uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] leading-none">
+              <span className="text-base sm:text-lg font-bold tracking-tight text-[#1E2621] font-sans leading-none">
                 CELIN COFFEE
               </span>
-              <span className="text-[9px] sm:text-[10px] tracking-[0.2em] font-extrabold text-[#09bd3c] drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] uppercase mt-0.5">
+              <span className="text-[9px] sm:text-[10px] font-semibold tracking-[0.24em] text-[#387A50] uppercase mt-1 leading-none">
                 ETHIOPIAN SPECIALTY
               </span>
             </div>
           </button>
 
-          {/* Desktop Navigation Links - Small text size matching reference image */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          {/* Desktop Navigation Links matching exact reference */}
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-8">
             <button
               type="button"
               onClick={() => handleNavClick("home")}
-              className={`text-xs sm:text-[13px] font-semibold tracking-wide transition-colors py-1 cursor-pointer bg-transparent border-none ${
+              className={`text-xs sm:text-[13.5px] font-medium tracking-normal transition-colors py-1 cursor-pointer bg-transparent border-none ${
                 currentPage === "home"
-                  ? "text-[#E06428] font-bold"
-                  : "text-white/85 hover:text-white"
+                  ? "text-[#1E5E3A] font-bold relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-[#1E5E3A] after:rounded-full"
+                  : "text-[#2C3830] hover:text-[#1E5E3A]"
               }`}
             >
               Home
@@ -100,7 +97,7 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
             <button
               type="button"
               onClick={() => handleNavClick("home", "#about")}
-              className="text-xs sm:text-[13px] font-semibold tracking-wide text-white/85 hover:text-white transition-colors py-1 cursor-pointer bg-transparent border-none"
+              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
             >
               Our Story
             </button>
@@ -108,20 +105,20 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
             <button
               type="button"
               onClick={() => handleNavClick("catalog")}
-              className={`text-xs sm:text-[13px] font-semibold tracking-wide transition-colors py-1 cursor-pointer bg-transparent border-none flex items-center gap-1 ${
+              className={`text-xs sm:text-[13.5px] font-medium tracking-normal transition-colors py-1 cursor-pointer bg-transparent border-none flex items-center gap-1 ${
                 currentPage === "catalog"
-                  ? "text-[#E06428] font-bold"
-                  : "text-white/85 hover:text-white"
+                  ? "text-[#1E5E3A] font-bold relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-[#1E5E3A] after:rounded-full"
+                  : "text-[#2C3830] hover:text-[#1E5E3A]"
               }`}
             >
               <span>Products</span>
-              <ChevronDown size={12} className="opacity-70" />
+              <ChevronDown size={13} className="opacity-75" />
             </button>
 
             <button
               type="button"
               onClick={() => handleNavClick("home", "#ceremony")}
-              className="text-xs sm:text-[13px] font-semibold tracking-wide text-white/85 hover:text-white transition-colors py-1 cursor-pointer bg-transparent border-none"
+              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
             >
               Ceremony
             </button>
@@ -129,7 +126,7 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
             <button
               type="button"
               onClick={() => handleNavClick("home", "#export")}
-              className="text-xs sm:text-[13px] font-semibold tracking-wide text-white/85 hover:text-white transition-colors py-1 cursor-pointer bg-transparent border-none"
+              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
             >
               Export & Quality
             </button>
@@ -137,35 +134,35 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
             <button
               type="button"
               onClick={() => handleNavClick("contact")}
-              className={`text-xs sm:text-[13px] font-semibold tracking-wide transition-colors py-1 cursor-pointer bg-transparent border-none ${
+              className={`text-xs sm:text-[13.5px] font-medium tracking-normal transition-colors py-1 cursor-pointer bg-transparent border-none ${
                 currentPage === "contact"
-                  ? "text-[#E06428] font-bold"
-                  : "text-white/85 hover:text-white"
+                  ? "text-[#1E5E3A] font-bold relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-[#1E5E3A] after:rounded-full"
+                  : "text-[#2C3830] hover:text-[#1E5E3A]"
               }`}
             >
               Contact
             </button>
           </nav>
 
-          {/* Right Area: Search Icon & White Pill "Request a Quote" Button */}
+          {/* Right Area: Search Icon & Rich Espresso Brown "Request a Quote →" Pill Button */}
           <div className="hidden lg:flex items-center gap-4">
             
             {/* Search Toggle / Input */}
             <div className="relative">
               {isSearchOpen ? (
-                <form onSubmit={handleSearchSubmit} className="flex items-center bg-black/40 backdrop-blur-md border border-white/25 rounded-full px-3 py-1 text-xs text-white">
+                <form onSubmit={handleSearchSubmit} className="flex items-center bg-white border border-[#CDE5D1] rounded-full px-3 py-1 text-xs text-[#1E2621] shadow-xs">
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search coffees..."
-                    className="bg-transparent text-white placeholder-white/60 focus:outline-none w-32 sm:w-36 text-xs"
+                    className="bg-transparent text-[#1E2621] placeholder-[#5A6D60] focus:outline-none w-32 sm:w-36 text-xs"
                     autoFocus
                   />
-                  <button type="submit" className="p-1 text-white/80 hover:text-white cursor-pointer border-none bg-transparent">
+                  <button type="submit" className="p-1 text-[#2C3830] hover:text-[#1E5E3A] cursor-pointer border-none bg-transparent">
                     <Search size={13} />
                   </button>
-                  <button type="button" onClick={() => setIsSearchOpen(false)} className="p-1 text-white/60 hover:text-white cursor-pointer border-none bg-transparent">
+                  <button type="button" onClick={() => setIsSearchOpen(false)} className="p-1 text-[#5A6D60] hover:text-[#1E2621] cursor-pointer border-none bg-transparent">
                     <X size={13} />
                   </button>
                 </form>
@@ -173,21 +170,22 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
                 <button
                   type="button"
                   onClick={() => setIsSearchOpen(true)}
-                  className="p-2 text-white/85 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer border-none bg-transparent"
+                  className="p-2 text-[#2C3830] hover:text-[#1E5E3A] hover:bg-black/5 rounded-full transition-colors cursor-pointer border-none bg-transparent"
                   aria-label="Search"
                 >
-                  <Search size={17} />
+                  <Search size={18} />
                 </button>
               )}
             </div>
 
-            {/* Reference-matching White Pill CTA Button */}
+            {/* Reference-matching Rich Espresso Brown Pill CTA Button */}
             <button
               type="button"
               onClick={() => handleNavClick("contact")}
-              className="inline-flex items-center justify-center bg-white text-[#0C4533] hover:bg-stone-100 text-xs font-extrabold px-4 py-2 rounded-full shadow-md shadow-black/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 bg-[#382319] hover:bg-[#26160F] text-white text-xs sm:text-[13px] font-medium px-5 py-2.5 rounded-full shadow-xs hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
-              Request a Quote
+              <span>Request a Quote</span>
+              <span className="text-sm leading-none">→</span>
             </button>
           </div>
 
@@ -195,7 +193,7 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-xl text-white hover:bg-white/10 transition-colors cursor-pointer border-none bg-transparent"
+            className="lg:hidden p-2 rounded-xl text-[#2C3830] hover:bg-black/5 transition-colors cursor-pointer border-none bg-transparent"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -204,75 +202,76 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer with matching light mint organic styling */}
       {isOpen && (
-        <div className="lg:hidden bg-[#093527]/98 backdrop-blur-xl border-t border-white/10 px-6 py-5 shadow-2xl flex flex-col gap-2.5 animate-in fade-in slide-in-from-top-4 duration-200 text-white">
+        <div className="lg:hidden bg-[#EBF6EE] border-t border-[#D2E9D6] px-6 py-5 shadow-xl flex flex-col gap-2.5 animate-in fade-in slide-in-from-top-4 duration-200 text-[#2C3830]">
           <button
             type="button"
             onClick={() => handleNavClick("home")}
             className={`text-left text-sm font-bold py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${
-              currentPage === "home" ? "text-[#E06428] bg-white/10" : "text-white/80 hover:text-white"
+              currentPage === "home" ? "text-[#1E5E3A] bg-white/70" : "text-[#2C3830] hover:text-[#1E5E3A]"
             }`}
           >
             <span>Home</span>
-            <ChevronRight size={16} className={currentPage === "home" ? "text-[#E06428]" : "text-white/30"} />
+            <ChevronRight size={16} className={currentPage === "home" ? "text-[#1E5E3A]" : "text-stone-400"} />
           </button>
 
           <button
             type="button"
             onClick={() => handleNavClick("home", "#about")}
-            className="text-left text-sm font-medium text-white/80 hover:text-white py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
+            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
           >
             <span>Our Story</span>
-            <ChevronRight size={16} className="text-white/30" />
+            <ChevronRight size={16} className="text-stone-400" />
           </button>
 
           <button
             type="button"
             onClick={() => handleNavClick("catalog")}
             className={`text-left text-sm font-bold py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${
-              currentPage === "catalog" ? "text-[#E06428] bg-white/10" : "text-white/80 hover:text-white"
+              currentPage === "catalog" ? "text-[#1E5E3A] bg-white/70" : "text-[#2C3830] hover:text-[#1E5E3A]"
             }`}
           >
             <span>Products</span>
-            <ChevronRight size={16} className={currentPage === "catalog" ? "text-[#E06428]" : "text-white/30"} />
+            <ChevronRight size={16} className={currentPage === "catalog" ? "text-[#1E5E3A]" : "text-stone-400"} />
           </button>
 
           <button
             type="button"
             onClick={() => handleNavClick("home", "#ceremony")}
-            className="text-left text-sm font-medium text-white/80 hover:text-white py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
+            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
           >
             <span>Ceremony</span>
-            <ChevronRight size={16} className="text-white/30" />
+            <ChevronRight size={16} className="text-stone-400" />
           </button>
 
           <button
             type="button"
             onClick={() => handleNavClick("home", "#export")}
-            className="text-left text-sm font-medium text-white/80 hover:text-white py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
+            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
           >
             <span>Export & Quality</span>
-            <ChevronRight size={16} className="text-white/30" />
+            <ChevronRight size={16} className="text-stone-400" />
           </button>
 
           <button
             type="button"
             onClick={() => handleNavClick("contact")}
             className={`text-left text-sm font-bold py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${
-              currentPage === "contact" ? "text-[#E06428] bg-white/10" : "text-white/80 hover:text-white"
+              currentPage === "contact" ? "text-[#1E5E3A] bg-white/70" : "text-[#2C3830] hover:text-[#1E5E3A]"
             }`}
           >
             <span>Contact</span>
-            <ChevronRight size={16} className={currentPage === "contact" ? "text-[#E06428]" : "text-white/30"} />
+            <ChevronRight size={16} className={currentPage === "contact" ? "text-[#1E5E3A]" : "text-stone-400"} />
           </button>
 
           <button
             type="button"
             onClick={() => handleNavClick("contact")}
-            className="mt-3 text-center bg-white text-[#0C4533] font-extrabold py-2.5 rounded-full shadow-lg hover:bg-stone-100 transition-all cursor-pointer text-xs"
+            className="mt-3 flex items-center justify-center gap-2 bg-[#382319] hover:bg-[#26160F] text-white font-medium py-2.5 rounded-full shadow-md transition-all cursor-pointer text-xs"
           >
-            Request a Quote
+            <span>Request a Quote</span>
+            <span className="text-sm leading-none">→</span>
           </button>
         </div>
       )}
