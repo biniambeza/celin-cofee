@@ -1,6 +1,5 @@
-import { ArrowRight, Globe, Mail, Phone, MapPin } from "lucide-react";
-import logo from "../assets/logo.png";
-import jebenaImg from "../assets/jebena-ceremony.jpg";
+import { Mail, Phone, MapPin, ChevronUp } from "lucide-react";
+import logoEmblem from "../assets/logo-emblem.png";
 
 export default function Footer({ onNavigate }) {
   const currentYear = new Date().getFullYear();
@@ -23,209 +22,162 @@ export default function Footer({ onNavigate }) {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer id="footer" className="bg-[#21120B] text-[#D8C7B5] border-t border-[#4A2917] relative overflow-hidden font-sans">
-      {/* Subtle top dual-tone hairline accent */}
-      <div className="h-0.5 w-full bg-gradient-to-r from-[#09bd3c] via-[#C48B58] to-[#09bd3c] opacity-70" />
-
-      {/* Decorative Traditional Ethiopian Buna Ceremony Badge */}
-      <div className="absolute -top-3 right-6 lg:right-16 pointer-events-none opacity-80 hidden md:block">
-        <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#C48B58] shadow-lg">
-          <img
-            src={jebenaImg}
-            alt="Traditional Ethiopian Buna Ceremony"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-9 pb-6 relative z-10">
+    <footer id="footer" className="bg-white text-stone-600 border-t border-stone-200 relative overflow-hidden font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 relative z-10">
         
-        {/* Compact Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-7 border-b border-[#381F13]">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-10 border-b border-stone-100">
           
-          {/* Column 1: Brand & Identity (4 cols) */}
-          <div className="lg:col-span-4 space-y-3">
+          {/* Column 1: Brand & Origin Mission (5 cols) */}
+          <div className="lg:col-span-5 space-y-4">
             <button
               type="button"
               onClick={() => handleLinkClick("home")}
-              className="flex items-center gap-2 text-left cursor-pointer border-none bg-transparent group p-0"
+              className="flex items-center gap-3 text-left cursor-pointer border-none bg-transparent group p-0"
             >
-              <img
-                src={logo}
-                alt="Celin Coffee - Ethiopian Roasted Coffee Exporter"
-                className="h-10 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow"
-              />
+              <div className="h-10 w-10 relative shrink-0 flex items-center justify-center bg-[#F4F9F5] rounded-xl p-1.5 border border-[#DCEBDD] transition-transform group-hover:scale-105">
+                <img
+                  src={logoEmblem}
+                  alt="Celin Coffee Emblem"
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-base sm:text-lg font-bold tracking-tight text-stone-900 font-sans leading-none">
+                  CELIN COFFEE
+                </span>
+                <span className="text-[10px] font-semibold tracking-[0.22em] text-[#1E5E3A] uppercase mt-1 leading-none">
+                  ETHIOPIAN SPECIALTY
+                </span>
+              </div>
             </button>
 
-            <p className="text-xs text-[#BFAEA0] leading-relaxed max-w-sm font-normal">
-              Licensed Ethiopian specialty coffee exporter based in Addis Ababa. Supplying high-scoring, single-origin green & profile-roasted beans directly to global roasters.
+            <p className="text-xs text-stone-500 leading-relaxed max-w-sm font-normal">
+              Direct-origin Ethiopian specialty coffee exporter based in Addis Ababa. Supplying specialty Grade 1 washed & natural micro-lots directly to roasters worldwide.
             </p>
-
-            <div className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#85E288] bg-[#2D1A10] px-3 py-1 rounded-full border border-[#482918]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#09bd3c] animate-pulse" />
-              <span>FOB Port of Djibouti • Global Freight</span>
-            </div>
           </div>
 
-          {/* Column 2: Navigation Links (2 cols) */}
-          <div className="lg:col-span-2 space-y-2.5">
-            <h4 className="font-display text-xs font-bold uppercase tracking-widest text-[#F5EDE4]">
-              About
+          {/* Column 2: Navigation Links (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900 font-sans">
+              Quick Links
             </h4>
-            <ul className="space-y-1.5 text-xs text-[#BFAEA0]">
+            <ul className="space-y-2 text-xs text-stone-600">
               <li>
                 <button
                   type="button"
                   onClick={() => handleLinkClick("home", "#story")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left font-medium text-[#85E288]"
+                  className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
-                  Our Story (Habesha Buna)
+                  Our Story
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleLinkClick("home", "#products")}
+                  className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
+                >
+                  Specialty Coffees
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => handleLinkClick("home", "#about")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
+                  className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
-                  Origin Beans
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => handleLinkClick("home", "#products")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
-                >
-                  Wholesale Lots
+                  About Us
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => handleLinkClick("home", "#journey")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
+                  className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
-                  Quality Standards
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => handleLinkClick("home", "#terms")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
-                >
-                  Export Terms
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => handleLinkClick("home", "#privacy")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
-                >
-                  Privacy Policy
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Products (2 cols) */}
-          <div className="lg:col-span-2 space-y-2.5">
-            <h4 className="font-display text-xs font-bold uppercase tracking-widest text-[#F5EDE4]">
-              Products
-            </h4>
-            <ul className="space-y-1.5 text-xs text-[#BFAEA0]">
-              <li>
-                <button
-                  type="button"
-                  onClick={() => handleLinkClick("home", "#products")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
-                >
-                  Single Origin
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => handleLinkClick("home", "#export")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
-                >
-                  Sustainability
+                  Quality & Export
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => handleLinkClick("home", "#contact")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
+                  className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
-                  Careers
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => handleLinkClick("home", "#contact")}
-                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
-                >
-                  Trade Desk
+                  Contact
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Trade Desk & Contact (4 cols) */}
-          <div className="lg:col-span-4 space-y-2.5 text-xs text-[#BFAEA0]">
-            <h4 className="font-display text-xs font-bold uppercase tracking-widest text-[#F5EDE4]">
+          {/* Column 3: Contact Details (4 cols) */}
+          <div className="lg:col-span-4 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900 font-sans">
               Contact Desk
             </h4>
             
-            <div className="space-y-1">
-              <p className="text-[11px] text-[#8C7665] font-semibold uppercase tracking-wider">
-                Direct Inquiries
-              </p>
-              <a
-                href="mailto:export@celincoffee.com"
-                className="text-xs text-[#F5EDE4] hover:text-[#09bd3c] transition-colors font-medium block"
-              >
-                export@celincoffee.com
-              </a>
-            </div>
+            <div className="space-y-3 text-xs text-stone-600">
+              {/* Email */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-[#F4F9F5] text-[#1E5E3A] flex items-center justify-center shrink-0 border border-[#DCEBDD]">
+                  <Mail size={13} />
+                </div>
+                <a
+                  href="mailto:export@celincoffee.com"
+                  className="text-stone-700 hover:text-[#1E5E3A] transition-colors font-medium text-xs"
+                >
+                  export@celincoffee.com
+                </a>
+              </div>
 
-            <div className="space-y-0.5 text-[11.5px] text-[#BFAEA0]">
-              <p className="text-[#F5EDE4] font-medium">Addis Ababa Headquarters</p>
-              <p>Bole Sub-City, Export District, Ethiopia</p>
-              <p>Tel: +251 911 234 567</p>
-            </div>
+              {/* Phone */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-[#F4F9F5] text-[#1E5E3A] flex items-center justify-center shrink-0 border border-[#DCEBDD]">
+                  <Phone size={13} />
+                </div>
+                <a
+                  href="tel:+251911234567"
+                  className="text-stone-700 hover:text-[#1E5E3A] transition-colors font-medium text-xs"
+                >
+                  +251 911 234 567
+                </a>
+              </div>
 
-            {/* Selamta Greeting Button */}
-            <div className="pt-1.5">
-              <button
-                type="button"
-                onClick={() => handleLinkClick("contact")}
-                className="inline-flex items-center gap-2 bg-[#D96B27] hover:bg-[#c35b19] text-white font-extrabold px-5 py-1.5 rounded-full text-xs shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <span>Selamta</span>
-                <ArrowRight size={13} />
-              </button>
+              {/* Location */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-[#F4F9F5] text-[#1E5E3A] flex items-center justify-center shrink-0 border border-[#DCEBDD]">
+                  <MapPin size={13} />
+                </div>
+                <span className="text-stone-700 font-medium text-xs">
+                  Bole Sub-City, Addis Ababa, Ethiopia
+                </span>
+              </div>
             </div>
           </div>
 
         </div>
 
-        {/* Streamlined Bottom Bar */}
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-[#9A8676]">
-          <p className="font-normal">
-            © {currentYear} <span className="font-semibold text-[#D8C7B5]">Celin Coffee</span>. Crafted for Quality-Sourced Origin.
+        {/* Bottom Bar */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+          <p className="font-normal text-center sm:text-left">
+            © {currentYear} <span className="font-semibold text-stone-800">Celin Coffee</span>. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-3">
-            <span className="text-[#85E288] font-medium">ECTA Licensed</span>
-            <span>•</span>
-            <span>Addis Ababa, Ethiopia</span>
-          </div>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="flex items-center gap-1.5 hover:text-[#1E5E3A] transition-colors cursor-pointer bg-transparent border-none p-0 text-stone-500 font-medium"
+            title="Back to top"
+          >
+            <span>Back to top</span>
+            <ChevronUp size={13} />
+          </button>
         </div>
 
       </div>

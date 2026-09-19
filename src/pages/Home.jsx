@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  Globe, 
-  ShieldCheck, 
-  Award, 
-  Package, 
-  Truck, 
-  Search, 
-  HeartHandshake, 
+import {
+  ArrowRight,
+  CheckCircle2,
+  Globe,
+  ShieldCheck,
+  Award,
+  Package,
+  Truck,
+  Search,
+  HeartHandshake,
   FileCheck,
   Sparkles,
   Coffee,
@@ -80,15 +80,11 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
       <section id="about" className="py-20 lg:py-24 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
         {/* Subtle background brand gradient circle */}
         <div className="absolute top-1/2 -left-40 w-96 h-96 bg-[#EBF6EE]/70 rounded-full blur-3xl pointer-events-none" />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* Header */}
           <div className="max-w-3xl mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF6EE] text-[#1E5E3A] text-xs font-semibold uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-[#1E5E3A] animate-pulse" />
-              <span>ABOUT CELIN COFFEE • ADDIS ABABA, ETHIOPIA</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight leading-[1.12]">
               Rooted in Ethiopian Highlands, <br />
               <span className="text-[#1E5E3A] italic font-normal">
@@ -149,7 +145,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
 
           {/* Dual Visual Showcase: Lab Cupping + Highland Farm */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             {/* Left Image: Cupping Lab */}
             <div className="lg:col-span-6 relative group">
               <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-[#FAF8F5] h-72 sm:h-80 relative">
@@ -196,13 +192,9 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
       {/* 5. SEED-TO-CUP QUALITY & EXPORT PROCESS (Rich Photographic Steps) */}
       <section id="journey" className="py-20 lg:py-24 bg-[#FAF8F5] border-b border-[#DCEBDD] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF6EE] text-[#1E5E3A] text-xs font-semibold uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-[#1E5E3A]" />
-              <span>EXPORT QUALITY CONTROL & TRACEABILITY</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight">
               From Highland Soil to Container Seal.
             </h2>
@@ -213,7 +205,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
 
           {/* 4 Process Photo Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
+
             {/* Step 1 */}
             <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#DCEBDD] shadow-xs hover:shadow-xl hover:border-[#1E5E3A]/40 transition-all duration-300 flex flex-col group">
               <div className="h-44 rounded-2xl overflow-hidden relative mb-4">
@@ -318,16 +310,11 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
       {/* 6. SOURCING STORIES & COMMUNITY IMPACT */}
       <section id="impact" className="py-20 lg:py-24 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             {/* Left Column: Farmer Partnership Narrative */}
             <div className="lg:col-span-6 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF6EE] text-[#1E5E3A] text-xs font-semibold uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-[#1E5E3A]" />
-                <span>COMMUNITY TRADE & STEWARDSHIP</span>
-              </div>
-
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight leading-tight">
                 Empowering Communities, <br />
                 <span className="text-[#1E5E3A] italic font-normal">
@@ -410,12 +397,8 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
       {/* 7. GLOBAL ROASTERS & TESTIMONIALS */}
       <section id="partners" className="py-20 lg:py-24 bg-[#FAF8F5] border-b border-[#DCEBDD]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          
+
           <div className="text-center max-w-2xl mx-auto space-y-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF6EE] text-[#1E5E3A] text-xs font-semibold uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-[#1E5E3A]" />
-              <span>INTERNATIONAL CLIENT TESTIMONIALS</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1C2621] tracking-tight">
               Trusted by Specialty Roasters Worldwide.
             </h2>
@@ -439,7 +422,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
 
           {/* 3 Review Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
+
             {/* Card 1 */}
             <div className="bg-white p-6 sm:p-7 rounded-3xl border border-[#DCEBDD] shadow-xs space-y-4 flex flex-col justify-between hover:shadow-lg hover:border-[#1E5E3A]/40 transition-all">
               <div className="space-y-3">

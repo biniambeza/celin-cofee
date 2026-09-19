@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import CoffeeModal from "./components/CoffeeModal";
-import { MessageCircle, X } from "lucide-react";
+import { X } from "lucide-react";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -73,11 +73,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 selection:bg-[#0C6052] selection:text-white relative">
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 selection:bg-[#1E5E3A] selection:text-white relative">
       
       {/* 1. Top Trade Announcement Bar (shown on catalog & contact pages, preserving Home transparent hero) */}
       {showBanner && currentPage !== "home" && (
-        <div className="bg-[#0C6052] text-white text-xs py-2 px-4 text-center font-bold relative z-50 flex items-center justify-center gap-2">
+        <div className="bg-[#1E5E3A] text-white text-xs py-2 px-4 text-center font-bold relative z-50 flex items-center justify-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-[#85E288] animate-pulse" />
           <span>
             2026 Harvest Season Open: Booking Full Containers (FOB Djibouti) & Air Sample Tins Worldwide.
@@ -127,23 +127,6 @@ function App() {
         />
       )}
 
-      {/* 5. Floating Fast WhatsApp / Trade Desk Inquiries */}
-      <div className="fixed bottom-6 right-6 z-40">
-        <button
-          type="button"
-          onClick={() => handleNavigate("contact", "Instant WhatsApp Inquiry")}
-          className="group flex items-center gap-2.5 bg-[#0C6052] hover:bg-[#08483D] text-white px-4 py-3 rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95 border-2 border-white cursor-pointer"
-          title="Fast Export Inquiries"
-        >
-          <div className="relative">
-            <MessageCircle size={22} className="text-white" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#85E288] rounded-full ring-2 ring-[#0C6052]" />
-          </div>
-          <span className="text-xs font-extrabold hidden sm:inline pr-1">
-            Trade Desk
-          </span>
-        </button>
-      </div>
 
       {/* 6. Footer */}
       <Footer onNavigate={handleNavigate} />

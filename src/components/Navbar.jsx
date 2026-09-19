@@ -1,24 +1,98 @@
-import { useState, useEffect } from "react";
-import { Menu, X, Search, ChevronDown, ChevronRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Menu, X, Search, ChevronRight } from "lucide-react";
 import logoEmblem from "../assets/logo-emblem.png";
+
+const NAV_ITEMS = [
+  { id: "home", label: "Home", hash: "" },
+  { id: "story", label: "Our Story", hash: "#story" },
+  { id: "products", label: "Products", hash: "#products" },
+  { id: "about", label: "About", hash: "#about" },
+  { id: "journey", label: "Quality & Export", hash: "#journey" },
+  { id: "contact", label: "Contact", hash: "#contact" },
+];
 
 export default function Navbar({ currentPage = "home", setCurrentPage, onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
 
+  const navContainerRef = useRef(null);
+  const navItemRefs = useRef({});
+
+  // Recalculate indicator position & width on active section change or resize
+  const updateIndicator = () => {
+    const activeBtn = navItemRefs.current[activeSection];
+    const container = navContainerRef.current;
+    if (activeBtn && container) {
+      const btnRect = activeBtn.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      setIndicatorStyle({
+        left: btnRect.left - containerRect.left,
+        width: btnRect.width,
+        opacity: 1,
+      });
+    }
+  };
+
+  useEffect(() => {
+    // Immediate and small delay update to ensure DOM fonts and layouts are mounted
+    updateIndicator();
+    const timer = setTimeout(updateIndicator, 100);
+
+    const handleResize = () => updateIndicator();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [activeSection]);
+
+  // Scroll spy to dynamically track active component on page scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Check if user is near bottom of the page -> set to contact
+      const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 90;
+      if (isBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // Offset for sticky navbar + breathing room
+      const scrollPos = window.scrollY + 140;
+      const sectionIds = ["home", "story", "products", "about", "journey", "contact"];
+      
+      let currentSection = "home";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPos >= top) {
+            currentSection = id;
+          }
+        }
+      }
+      setActiveSection(currentSection);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (target, hash) => {
+  const handleNavClick = (target, hash, sectionId) => {
     setIsOpen(false);
     setIsSearchOpen(false);
+
+    if (sectionId) {
+      setActiveSection(sectionId);
+    }
+
     if (onNavigate) {
       onNavigate(target, null, hash);
     } else if (setCurrentPage) {
@@ -33,7 +107,7 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
         } else {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
-      }, 100);
+      }, 50);
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -42,24 +116,25 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      handleNavClick("catalog");
+      handleNavClick("home", "#products", "products");
     }
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
-          ? "bg-[#EBF6EE]/96 backdrop-blur-md border-b border-[#D2E9D6] shadow-sm py-2.5 sm:py-3"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-[#EBF6EE]/96 backdrop-blur-md border-b border-[#D2E9D6] shadow-xs py-2.5 sm:py-3"
           : "bg-[#EBF6EE]/92 backdrop-blur-md border-b border-[#D5EAD9]/80 py-3 sm:py-3.5"
-        }`}
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
 
-          {/* Brand Logo - Leaf & Bean Emblem + Clean Dual-Line Typography matching reference */}
+          {/* Brand Logo - Leaf & Bean Emblem + Clean Dual-Line Typography */}
           <button
             type="button"
-            onClick={() => handleNavClick("home")}
+            onClick={() => handleNavClick("home", "", "home")}
             className="flex items-center gap-2.5 sm:gap-3 group text-left cursor-pointer border-none bg-transparent"
           >
             <div className="h-9 w-9 sm:h-10 sm:w-10 relative shrink-0 flex items-center justify-center">
@@ -79,59 +154,39 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
             </div>
           </button>
 
-          {/* Desktop Navigation Links matching exact reference */}
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-8">
-            <button
-              type="button"
-              onClick={() => handleNavClick("home")}
-              className={`text-xs sm:text-[13.5px] font-medium tracking-normal transition-colors py-1 cursor-pointer bg-transparent border-none ${currentPage === "home"
-                  ? "text-[#1E5E3A] font-bold relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-[#1E5E3A] after:rounded-full"
-                  : "text-[#2C3830] hover:text-[#1E5E3A]"
-                }`}
-            >
-              Home
-            </button>
+          {/* Desktop Navigation Links with Smoothly Movable Active Line */}
+          <nav
+            ref={navContainerRef}
+            className="hidden lg:flex items-center gap-7 xl:gap-8 relative py-1.5"
+          >
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <button
+                  key={item.id}
+                  ref={(el) => (navItemRefs.current[item.id] = el)}
+                  type="button"
+                  onClick={() => handleNavClick("home", item.hash, item.id)}
+                  className={`text-xs sm:text-[13.5px] tracking-normal transition-colors py-1 cursor-pointer bg-transparent border-none relative z-10 ${
+                    isActive
+                      ? "text-[#1E5E3A] font-bold"
+                      : "text-[#2C3830] hover:text-[#1E5E3A] font-medium"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
 
-            <button
-              type="button"
-              onClick={() => handleNavClick("home", "#story")}
-              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
-            >
-              Our Story
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleNavClick("home", "#products")}
-              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none flex items-center gap-1"
-            >
-              <span>Products</span>
-
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleNavClick("home", "#about")}
-              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
-            >
-              About
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleNavClick("home", "#journey")}
-              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
-            >
-              Quality & Export
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleNavClick("home", "#contact")}
-              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
-            >
-              Contact
-            </button>
+            {/* Movable Horizontal Indicator Line */}
+            <span
+              className="absolute bottom-0 h-[2.5px] bg-[#1E5E3A] rounded-full transition-all duration-300 ease-out pointer-events-none"
+              style={{
+                left: `${indicatorStyle.left}px`,
+                width: `${indicatorStyle.width}px`,
+                opacity: indicatorStyle.opacity,
+              }}
+            />
           </nav>
 
           {/* Right Area: Search Icon & Rich Espresso Brown "Request a Quote →" Pill Button */}
@@ -140,7 +195,10 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
             {/* Search Toggle / Input */}
             <div className="relative">
               {isSearchOpen ? (
-                <form onSubmit={handleSearchSubmit} className="flex items-center bg-white border border-[#CDE5D1] rounded-full px-3 py-1 text-xs text-[#1E2621] shadow-xs">
+                <form
+                  onSubmit={handleSearchSubmit}
+                  className="flex items-center bg-white border border-[#CDE5D1] rounded-full px-3 py-1 text-xs text-[#1E2621] shadow-2xs"
+                >
                   <input
                     type="text"
                     value={searchQuery}
@@ -149,10 +207,17 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
                     className="bg-transparent text-[#1E2621] placeholder-[#5A6D60] focus:outline-none w-32 sm:w-36 text-xs"
                     autoFocus
                   />
-                  <button type="submit" className="p-1 text-[#2C3830] hover:text-[#1E5E3A] cursor-pointer border-none bg-transparent">
+                  <button
+                    type="submit"
+                    className="p-1 text-[#2C3830] hover:text-[#1E5E3A] cursor-pointer border-none bg-transparent"
+                  >
                     <Search size={13} />
                   </button>
-                  <button type="button" onClick={() => setIsSearchOpen(false)} className="p-1 text-[#5A6D60] hover:text-[#1E2621] cursor-pointer border-none bg-transparent">
+                  <button
+                    type="button"
+                    onClick={() => setIsSearchOpen(false)}
+                    className="p-1 text-[#5A6D60] hover:text-[#1E2621] cursor-pointer border-none bg-transparent"
+                  >
                     <X size={13} />
                   </button>
                 </form>
@@ -168,11 +233,11 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
               )}
             </div>
 
-            {/* Reference-matching Rich Espresso Brown Pill CTA Button */}
+            {/* Rich Espresso Brown Pill CTA Button */}
             <button
               type="button"
-              onClick={() => handleNavClick("home", "#contact")}
-              className="inline-flex items-center justify-center gap-1.5 bg-[#382319] hover:bg-[#26160F] text-white text-xs sm:text-[13px] font-medium px-5 py-2.5 rounded-full shadow-xs hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              onClick={() => handleNavClick("home", "#contact", "contact")}
+              className="inline-flex items-center justify-center gap-1.5 bg-[#382319] hover:bg-[#26160F] text-white text-xs sm:text-[13px] font-medium px-5 py-2.5 rounded-full shadow-2xs hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               <span>Request a Quote</span>
               <span className="text-sm leading-none">→</span>
@@ -192,67 +257,34 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
         </div>
       </div>
 
-      {/* Mobile Drawer with matching light mint organic styling */}
+      {/* Mobile Drawer with matching active styling indicator */}
       {isOpen && (
-        <div className="lg:hidden bg-[#EBF6EE] border-t border-[#D2E9D6] px-6 py-5 shadow-xl flex flex-col gap-2.5 animate-in fade-in slide-in-from-top-4 duration-200 text-[#2C3830]">
-          <button
-            type="button"
-            onClick={() => handleNavClick("home")}
-            className={`text-left text-sm font-bold py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${currentPage === "home" ? "text-[#1E5E3A] bg-white/70" : "text-[#2C3830] hover:text-[#1E5E3A]"
-              }`}
-          >
-            <span>Home</span>
-            <ChevronRight size={16} className={currentPage === "home" ? "text-[#1E5E3A]" : "text-stone-400"} />
-          </button>
+        <div className="lg:hidden bg-[#EBF6EE] border-t border-[#D2E9D6] px-6 py-5 shadow-xl flex flex-col gap-2 animate-in fade-in slide-in-from-top-4 duration-200 text-[#2C3830]">
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleNavClick("home", item.hash, item.id)}
+                className={`text-left text-sm py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${
+                  isActive
+                    ? "text-[#1E5E3A] font-bold bg-white/80 border-l-4 border-[#1E5E3A] shadow-2xs"
+                    : "text-[#2C3830] hover:text-[#1E5E3A] font-medium"
+                }`}
+              >
+                <span>{item.label}</span>
+                <ChevronRight
+                  size={16}
+                  className={isActive ? "text-[#1E5E3A]" : "text-stone-400"}
+                />
+              </button>
+            );
+          })}
 
           <button
             type="button"
-            onClick={() => handleNavClick("home", "#story")}
-            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
-          >
-            <span>Our Story</span>
-            <ChevronRight size={16} className="text-stone-400" />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleNavClick("home", "#products")}
-            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
-          >
-            <span>Products</span>
-            <ChevronRight size={16} className="text-stone-400" />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleNavClick("home", "#about")}
-            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
-          >
-            <span>About</span>
-            <ChevronRight size={16} className="text-stone-400" />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleNavClick("home", "#journey")}
-            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
-          >
-            <span>Quality & Export</span>
-            <ChevronRight size={16} className="text-stone-400" />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleNavClick("home", "#contact")}
-            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
-          >
-            <span>Contact</span>
-            <ChevronRight size={16} className="text-stone-400" />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleNavClick("home", "#contact")}
+            onClick={() => handleNavClick("home", "#contact", "contact")}
             className="mt-3 flex items-center justify-center gap-2 bg-[#382319] hover:bg-[#26160F] text-white font-medium py-2.5 rounded-full shadow-md transition-all cursor-pointer text-xs"
           >
             <span>Request a Quote</span>

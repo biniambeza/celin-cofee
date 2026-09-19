@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  CheckCircle2, 
-  Globe, 
-  ShieldCheck, 
-  Clock, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle2,
+  Globe,
+  ShieldCheck,
+  Clock,
   Sparkles,
   ArrowRight,
   MessageCircle
@@ -54,13 +54,9 @@ export default function ContactSection({ preselectedCoffee = "" }) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14 space-y-2.5">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF6EE] text-[#255D3A] text-xs font-semibold uppercase tracking-wider">
-            <span className="w-2 h-2 rounded-full bg-[#255D3A] animate-pulse" />
-            <span>DIRECT EXPORT TRADE DESK • ADDIS ABABA</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight">
             Partner Directly with Origin.
           </h2>
@@ -71,10 +67,10 @@ export default function ContactSection({ preselectedCoffee = "" }) {
 
         {/* 2-Column Responsive Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          
+
           {/* Left Column: Direct Contact & Export Credentials (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            
+
             {/* Quick Info Box */}
             <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#DCEBDD] shadow-xs space-y-5">
               <h3 className="font-serif font-bold text-xl text-[#1C2621] pb-2 border-b border-stone-100 flex items-center justify-between">
@@ -123,19 +119,6 @@ export default function ContactSection({ preselectedCoffee = "" }) {
                   </div>
                 </div>
               </div>
-
-              {/* Instant WhatsApp Trade Desk Action */}
-              <div className="pt-2">
-                <a
-                  href="https://wa.me/251911234567?text=Hello%20Celin%20Coffee%2C%20I%20would%20like%20to%20inquire%20about%20Ethiopian%20coffee%20lots."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-semibold py-2.5 px-4 rounded-full text-xs shadow-xs transition-all hover:scale-[1.01] cursor-pointer"
-                >
-                  <MessageCircle size={16} />
-                  <span>Instant WhatsApp Trade Chat</span>
-                </a>
-              </div>
             </div>
 
             {/* Export Trust Badges */}
@@ -159,7 +142,7 @@ export default function ContactSection({ preselectedCoffee = "" }) {
           {/* Right Column: Shortened, Attractive Form (7 cols) */}
           <div className="lg:col-span-7">
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#DCEBDD] shadow-xs relative">
-              
+
               {submitted ? (
                 <div className="py-12 px-4 text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-[#EBF6EE] text-[#255D3A] mx-auto flex items-center justify-center shadow-xs">

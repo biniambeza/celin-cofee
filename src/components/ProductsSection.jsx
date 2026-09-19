@@ -82,14 +82,10 @@ export default function ProductsSection({ onNavigate, onSelectCoffee }) {
   return (
     <section id="products" className="py-16 sm:py-20 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Shortened Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
           <div className="space-y-2 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF6EE] text-[#255D3A] text-xs font-semibold uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-[#255D3A]" />
-              <span>EXPORT HARVEST PORTFOLIO</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight">
               Single Origin Harvests.
             </h2>
@@ -105,11 +101,10 @@ export default function ProductsSection({ onNavigate, onSelectCoffee }) {
                 key={tab}
                 type="button"
                 onClick={() => setFilter(tab)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer border-none ${
-                  filter === tab
-                    ? "bg-[#255D3A] text-white shadow-xs"
-                    : "bg-transparent text-stone-600 hover:text-[#1C2621]"
-                }`}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer border-none ${filter === tab
+                  ? "bg-[#255D3A] text-white shadow-xs"
+                  : "bg-transparent text-stone-600 hover:text-[#1C2621]"
+                  }`}
               >
                 {tab}
               </button>
@@ -131,7 +126,7 @@ export default function ProductsSection({ onNavigate, onSelectCoffee }) {
                   alt={coffee.name}
                   className="h-full max-h-48 w-auto object-contain drop-shadow-md"
                 />
-                
+
                 {/* SCA Score Badge */}
                 <div className="absolute top-2.5 left-2.5 bg-[#1C2621] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-xs flex items-center gap-1">
                   <Award size={11} className="text-[#88E298]" />
@@ -189,23 +184,7 @@ export default function ProductsSection({ onNavigate, onSelectCoffee }) {
           ))}
         </div>
 
-        {/* Shortened Bottom Inquiries Strip */}
-        <div className="mt-10 p-4 sm:p-5 rounded-2xl bg-[#F0F8F2] border border-[#D5EAD9] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#255D3A] shrink-0 animate-pulse" />
-            <p className="text-xs sm:text-sm text-[#1C2621]">
-              <strong className="font-semibold">Looking for full container loads (FOB Djibouti) or custom micro-lots?</strong> Air sample tins dispatched within 48 hours.
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={() => handleInquire("Full Container FOB Inquiry")}
-            className="shrink-0 inline-flex items-center gap-1.5 text-xs font-bold text-[#255D3A] hover:text-[#1E4D2F] underline cursor-pointer"
-          >
-            <span>Inquire Export Desk</span>
-            <ArrowRight size={13} />
-          </button>
-        </div>
+
 
       </div>
     </section>

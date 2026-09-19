@@ -3,6 +3,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
@@ -13,11 +14,11 @@
 
 /* Custom Utilities for Coffee Aesthetic */
 .bg-coffee-glow {
-  background: radial-gradient(circle at 50% 30%, rgba(12, 96, 82, 0.08) 0%, rgba(59, 170, 62, 0.04) 50%, transparent 80%);
+  background: radial-gradient(circle at 50% 30%, rgba(30, 94, 58, 0.08) 0%, rgba(56, 35, 25, 0.04) 50%, transparent 80%);
 }
 
 .text-gradient-emerald {
-  background: linear-gradient(135deg, #0C6052 0%, #08483D 60%, #3BAA3E 100%);
+  background: linear-gradient(135deg, #1E5E3A 0%, #164E2E 60%, #09BD3C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

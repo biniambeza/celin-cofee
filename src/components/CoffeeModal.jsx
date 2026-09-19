@@ -56,7 +56,7 @@ export default function CoffeeModal({ coffee, onClose, onInquire }) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
             <div className="absolute top-4 left-4 flex flex-col gap-2">
-              <span className="bg-[#0C6052] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 border border-white/20 w-fit">
+              <span className="bg-[#1E5E3A] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 border border-white/20 w-fit">
                 <Award size={14} className="text-[#85E288]" />
                 <span>{score} SCA Score</span>
               </span>
@@ -79,7 +79,7 @@ export default function CoffeeModal({ coffee, onClose, onInquire }) {
             
             {/* Header */}
             <div>
-              <div className="flex items-center gap-1.5 text-xs font-bold text-[#0C6052] uppercase tracking-wider mb-1">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-[#1E5E3A] uppercase tracking-wider mb-1">
                 <MapPin size={14} />
                 <span>{region}</span>
               </div>
@@ -100,7 +100,7 @@ export default function CoffeeModal({ coffee, onClose, onInquire }) {
                 {flavorNotes.map((note) => (
                   <span
                     key={note}
-                    className="bg-[#0C6052]/10 text-[#0C6052] text-xs font-bold px-3 py-1.5 rounded-xl border border-[#0C6052]/20"
+                    className="bg-[#EBF6EE] text-[#1E5E3A] text-xs font-bold px-3 py-1.5 rounded-xl border border-[#D5EAD9]"
                   >
                     {note}
                   </span>
@@ -150,7 +150,7 @@ export default function CoffeeModal({ coffee, onClose, onInquire }) {
                       </span>
                       <div className="flex-1 bg-stone-200 h-2 rounded-full overflow-hidden">
                         <div
-                          className="bg-[#0C6052] h-full rounded-full transition-all duration-500"
+                          className="bg-[#1E5E3A] h-full rounded-full transition-all duration-500"
                           style={{ width: `${(val / 10) * 100}%` }}
                         />
                       </div>
@@ -179,7 +179,7 @@ export default function CoffeeModal({ coffee, onClose, onInquire }) {
                   onClose();
                   if (onInquire) onInquire(name);
                 }}
-                className="flex-1 bg-[#0C6052] hover:bg-[#08483D] text-white font-bold py-3.5 px-6 rounded-full shadow-md transition-all hover:scale-[1.01] flex items-center justify-center gap-2 cursor-pointer text-sm"
+                className="flex-1 bg-[#382319] hover:bg-[#26160F] text-white font-bold py-3.5 px-6 rounded-full shadow-md transition-all hover:scale-[1.01] flex items-center justify-center gap-2 cursor-pointer text-sm"
               >
                 <Mail size={16} />
                 <span>Request Lot Sample / Trade Quote</span>

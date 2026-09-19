@@ -32,7 +32,7 @@ export default function ProductCard({ product, onInquire, onSelect }) {
   return (
     <div
       onClick={handleCardClick}
-      className="group bg-white rounded-3xl border border-stone-200/90 hover:border-[#0C6052]/50 shadow-xs hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1.5 cursor-pointer relative"
+      className="group bg-white rounded-3xl border border-stone-200/90 hover:border-[#1E5E3A]/50 shadow-xs hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1.5 cursor-pointer relative"
     >
       {/* Image Container with Badges */}
       <div className="relative h-64 w-full overflow-hidden bg-stone-900">
@@ -53,7 +53,7 @@ export default function ProductCard({ product, onInquire, onSelect }) {
           </span>
 
           {/* Cupping Score Badge */}
-          <span className="bg-[#0C6052] text-white text-xs font-extrabold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 border border-white/20">
+          <span className="bg-[#1E5E3A] text-white text-xs font-extrabold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 border border-white/20">
             <Award size={13} className="text-[#85E288]" />
             <span>{score} PTS</span>
           </span>
@@ -66,7 +66,7 @@ export default function ProductCard({ product, onInquire, onSelect }) {
             <span>{roast}</span>
           </div>
           {fobPriceRange && (
-            <span className="bg-[#0C6052]/90 backdrop-blur-md text-white text-[11px] px-2.5 py-1 rounded-lg font-bold">
+            <span className="bg-[#1E5E3A]/90 backdrop-blur-md text-white text-[11px] px-2.5 py-1 rounded-lg font-bold">
               {fobPriceRange.split("-")[0]} / kg
             </span>
           )}
@@ -75,7 +75,7 @@ export default function ProductCard({ product, onInquire, onSelect }) {
         {/* Quick View Hover Indicator */}
         <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
           <div className="bg-white/95 text-stone-900 px-4 py-2 rounded-full font-bold text-xs flex items-center gap-2 shadow-lg backdrop-blur-xs transform scale-95 group-hover:scale-100 transition-transform">
-            <Eye size={15} className="text-[#0C6052]" />
+            <Eye size={15} className="text-[#1E5E3A]" />
             <span>View Full Specs</span>
           </div>
         </div>
@@ -86,14 +86,14 @@ export default function ProductCard({ product, onInquire, onSelect }) {
         <div className="space-y-3">
           {/* Region & Altitude */}
           <div className="flex items-center gap-1.5 text-xs text-stone-500 font-medium">
-            <MapPin size={14} className="text-[#0C6052] shrink-0" />
+            <MapPin size={14} className="text-[#1E5E3A] shrink-0" />
             <span className="truncate">{region}</span>
             <span>•</span>
             <span className="shrink-0">{altitude}</span>
           </div>
 
           {/* Coffee Name */}
-          <h3 className="text-xl font-bold text-stone-900 group-hover:text-[#0C6052] transition-colors leading-snug">
+          <h3 className="text-xl font-bold text-stone-900 group-hover:text-[#1E5E3A] transition-colors leading-snug">
             {name}
           </h3>
 
@@ -113,7 +113,7 @@ export default function ProductCard({ product, onInquire, onSelect }) {
               {flavorNotes.slice(0, 4).map((note) => (
                 <span
                   key={note}
-                  className="bg-[#0C6052]/8 text-[#0C6052] text-xs font-semibold px-2.5 py-1 rounded-lg border border-[#0C6052]/15"
+                  className="bg-[#EBF6EE] text-[#1E5E3A] text-xs font-semibold px-2.5 py-1 rounded-lg border border-[#D5EAD9]"
                 >
                   {note}
                 </span>
@@ -135,7 +135,7 @@ export default function ProductCard({ product, onInquire, onSelect }) {
             <button
               type="button"
               onClick={handleInquire}
-              className="inline-flex items-center gap-1 bg-[#0C6052] text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-[#08483D] shadow-xs hover:shadow-md transition-all group/btn hover:scale-105 cursor-pointer"
+              className="inline-flex items-center gap-1 bg-[#382319] text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-[#26160F] shadow-xs hover:shadow-md transition-all group/btn hover:scale-105 cursor-pointer"
             >
               <span>Inquire</span>
               <ArrowUpRight size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
