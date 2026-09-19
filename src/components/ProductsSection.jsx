@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Award, Sparkles, Filter, CheckCircle2 } from "lucide-react";
+import { Award } from "lucide-react";
 
 import pouchYirgacheffe from "../assets/pouch-yirgacheffe.jpg";
 import pouchSidamo from "../assets/pouch-sidamo.jpg";
@@ -80,11 +80,11 @@ export default function ProductsSection({ onNavigate, onSelectCoffee }) {
   };
 
   return (
-    <section id="products" className="py-16 sm:py-20 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
+    <section id="products" className="py-12 lg:py-14 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Shortened Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
           <div className="space-y-2 text-left">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight">
               Single Origin Harvests.
@@ -113,7 +113,7 @@ export default function ProductsSection({ onNavigate, onSelectCoffee }) {
         </div>
 
         {/* 4 Shortened Product Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {filteredProducts.map((coffee) => (
             <div
               key={coffee.id}

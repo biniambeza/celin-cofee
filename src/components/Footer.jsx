@@ -28,19 +28,19 @@ export default function Footer({ onNavigate }) {
 
   return (
     <footer id="footer" className="bg-white text-stone-600 border-t border-stone-200 relative overflow-hidden font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-7 pb-4 sm:pb-5 relative z-10">
         
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-10 border-b border-stone-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 pb-5 border-b border-stone-100">
           
           {/* Column 1: Brand & Origin Mission (5 cols) */}
-          <div className="lg:col-span-5 space-y-4">
+          <div className="lg:col-span-5 space-y-2.5">
             <button
               type="button"
               onClick={() => handleLinkClick("home")}
-              className="flex items-center gap-3 text-left cursor-pointer border-none bg-transparent group p-0"
+              className="flex items-center gap-2.5 text-left cursor-pointer border-none bg-transparent group p-0"
             >
-              <div className="h-10 w-10 relative shrink-0 flex items-center justify-center bg-[#F4F9F5] rounded-xl p-1.5 border border-[#DCEBDD] transition-transform group-hover:scale-105">
+              <div className="h-8 w-8 relative shrink-0 flex items-center justify-center bg-[#F4F9F5] rounded-lg p-1 border border-[#DCEBDD] transition-transform group-hover:scale-105">
                 <img
                   src={logoEmblem}
                   alt="Celin Coffee Emblem"
@@ -48,26 +48,26 @@ export default function Footer({ onNavigate }) {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-base sm:text-lg font-bold tracking-tight text-stone-900 font-sans leading-none">
+                <span className="text-sm sm:text-base font-bold tracking-tight text-stone-900 font-sans leading-none">
                   CELIN COFFEE
                 </span>
-                <span className="text-[10px] font-semibold tracking-[0.22em] text-[#1E5E3A] uppercase mt-1 leading-none">
+                <span className="text-[9px] font-semibold tracking-[0.2em] text-[#1E5E3A] uppercase mt-0.5 leading-none">
                   ETHIOPIAN SPECIALTY
                 </span>
               </div>
             </button>
 
-            <p className="text-xs text-stone-500 leading-relaxed max-w-sm font-normal">
+            <p className="text-[11px] sm:text-xs text-stone-500 leading-relaxed max-w-sm font-normal">
               Direct-origin Ethiopian specialty coffee exporter based in Addis Ababa. Supplying specialty Grade 1 washed & natural micro-lots directly to roasters worldwide.
             </p>
           </div>
 
           {/* Column 2: Navigation Links (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900 font-sans">
+          <div className="lg:col-span-3 space-y-2">
+            <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-900 font-sans">
               Quick Links
             </h4>
-            <ul className="space-y-2 text-xs text-stone-600">
+            <ul className="space-y-1.5 text-[11px] sm:text-xs text-stone-600">
               <li>
                 <button
                   type="button"
@@ -117,44 +117,44 @@ export default function Footer({ onNavigate }) {
           </div>
 
           {/* Column 3: Contact Details (4 cols) */}
-          <div className="lg:col-span-4 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900 font-sans">
+          <div className="lg:col-span-4 space-y-2">
+            <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-900 font-sans">
               Contact Desk
             </h4>
             
-            <div className="space-y-3 text-xs text-stone-600">
+            <div className="space-y-2 text-[11px] sm:text-xs text-stone-600">
               {/* Email */}
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-[#F4F9F5] text-[#1E5E3A] flex items-center justify-center shrink-0 border border-[#DCEBDD]">
-                  <Mail size={13} />
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-[#F4F9F5] text-[#1E5E3A] flex items-center justify-center shrink-0 border border-[#DCEBDD]">
+                  <Mail size={12} />
                 </div>
                 <a
                   href="mailto:export@celincoffee.com"
-                  className="text-stone-700 hover:text-[#1E5E3A] transition-colors font-medium text-xs"
+                  className="text-stone-700 hover:text-[#1E5E3A] transition-colors font-medium"
                 >
                   export@celincoffee.com
                 </a>
               </div>
 
               {/* Phone */}
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-[#F4F9F5] text-[#1E5E3A] flex items-center justify-center shrink-0 border border-[#DCEBDD]">
-                  <Phone size={13} />
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-[#F4F9F5] text-[#1E5E3A] flex items-center justify-center shrink-0 border border-[#DCEBDD]">
+                  <Phone size={12} />
                 </div>
                 <a
                   href="tel:+251911234567"
-                  className="text-stone-700 hover:text-[#1E5E3A] transition-colors font-medium text-xs"
+                  className="text-stone-700 hover:text-[#1E5E3A] transition-colors font-medium"
                 >
                   +251 911 234 567
                 </a>
               </div>
 
               {/* Location */}
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-[#F4F9F5] text-[#1E5E3A] flex items-center justify-center shrink-0 border border-[#DCEBDD]">
-                  <MapPin size={13} />
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-[#F4F9F5] text-[#1E5E3A] flex items-center justify-center shrink-0 border border-[#DCEBDD]">
+                  <MapPin size={12} />
                 </div>
-                <span className="text-stone-700 font-medium text-xs">
+                <span className="text-stone-700 font-medium">
                   Bole Sub-City, Addis Ababa, Ethiopia
                 </span>
               </div>
@@ -164,7 +164,7 @@ export default function Footer({ onNavigate }) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+        <div className="pt-3.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-stone-500">
           <p className="font-normal text-center sm:text-left">
             © {currentYear} <span className="font-semibold text-stone-800">Celin Coffee</span>. All rights reserved.
           </p>
@@ -176,7 +176,7 @@ export default function Footer({ onNavigate }) {
             title="Back to top"
           >
             <span>Back to top</span>
-            <ChevronUp size={13} />
+            <ChevronUp size={12} />
           </button>
         </div>
 

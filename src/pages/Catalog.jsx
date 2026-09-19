@@ -47,9 +47,9 @@ export default function Catalog({ onNavigate, onSelectCoffee }) {
     });
 
   return (
-    <main className="bg-[#FAF8F5] pt-24 pb-20 min-h-screen">
+    <main className="bg-[#FAF8F5] pt-20 sm:pt-24 pb-14 min-h-screen">
       {/* Header Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 text-center">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 text-center">
         <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0C6052]/10 text-[#0C6052] text-xs font-extrabold uppercase tracking-wider mb-4 border border-[#0C6052]/20">
           <ShieldCheck size={15} className="text-[#3BAA3E]" />
           <span>Current Harvest Export Lots • Q-Grade Certified</span>

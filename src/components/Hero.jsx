@@ -1,4 +1,4 @@
-import { ArrowRight, Ship, ShieldCheck, HeartHandshake, Sprout } from "lucide-react";
+import { Ship, ShieldCheck, HeartHandshake, Sprout } from "lucide-react";
 import heroMintCup from "../assets/hero-mint-cup.jpg";
 
 export default function Hero({ onNavigate }) {
@@ -13,7 +13,7 @@ export default function Hero({ onNavigate }) {
   };
 
   return (
-    <section id="home" className="relative pt-24 sm:pt-28 md:pt-32 pb-14 sm:pb-16 bg-gradient-to-b from-[#EBF6EE] via-[#E6F4EA] to-[#E2F1E5] text-[#1C2621] overflow-hidden">
+    <section id="home" className="relative pt-20 sm:pt-24 md:pt-28 pb-10 sm:pb-12 bg-gradient-to-b from-[#EBF6EE] via-[#E6F4EA] to-[#E2F1E5] text-[#1C2621] overflow-hidden">
       
       {/* Decorative Botanical Leaf Silhouettes on bottom left matching reference */}
       <div className="absolute -bottom-10 -left-12 w-80 h-80 opacity-25 pointer-events-none text-[#7AA884]">
@@ -26,10 +26,10 @@ export default function Hero({ onNavigate }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         {/* Top Hero Grid: Left Narrative + Right Cup Visual */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
           {/* Left Column: Clean & Elegant Headline matching reference */}
-          <div className="lg:col-span-6 text-left space-y-6">
+          <div className="lg:col-span-6 text-left space-y-5">
             
             {/* Category Tag with trailing line */}
             <div className="flex items-center gap-2.5">
@@ -55,7 +55,7 @@ export default function Hero({ onNavigate }) {
             </p>
 
             {/* CTA Button */}
-            <div className="pt-2">
+            <div className="pt-1">
               <button
                 type="button"
                 onClick={handleCatalogClick}
@@ -103,8 +103,8 @@ export default function Hero({ onNavigate }) {
         </div>
 
         {/* Bottom 4 Trust Pillars Strip matching reference */}
-        <div className="mt-14 sm:mt-18 pt-10 border-t border-[#D5EAD9]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-[#D5EAD9]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
             
             {/* Pillar 1: Premium Grade Beans */}
             <div className="flex items-start gap-4">

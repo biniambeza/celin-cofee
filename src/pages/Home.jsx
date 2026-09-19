@@ -1,26 +1,10 @@
-import { useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
   Globe,
-  ShieldCheck,
   Award,
-  Package,
-  Truck,
-  Search,
-  HeartHandshake,
-  FileCheck,
-  Sparkles,
-  Coffee,
-  Quote,
-  Flame,
-  Check,
-  Building2,
   Users,
   Layers,
-  MapPin,
-  Clock,
-  Send,
   Star
 } from "lucide-react";
 import Hero from "../components/Hero";
@@ -29,7 +13,6 @@ import ProductsSection from "../components/ProductsSection";
 import ContactSection from "../components/ContactSection";
 
 // Authentic photographic assets
-import jebenaImg from "../assets/jebena-ceremony.jpg";
 import farmImg from "../assets/coffee-farm.jpg";
 import farmerImg from "../assets/farmer.jpg";
 import cuppingLabImg from "../assets/cupping-lab.jpg";
@@ -38,14 +21,6 @@ import packagingImg from "../assets/celin-packaging.jpg";
 import storyCeremonyImg from "../assets/habesha-story-ceremony.jpg";
 
 export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) {
-  const handleInquire = (coffeeName) => {
-    if (onNavigate) {
-      onNavigate("contact", coffeeName);
-    } else {
-      const el = document.querySelector("#contact");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   const handleGoProducts = () => {
     const el = document.querySelector("#products");
@@ -77,14 +52,14 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
       <ProductsSection onNavigate={onNavigate} onSelectCoffee={onSelectCoffee} />
 
       {/* 4. ABOUT CELIN COFFEE: Company Profile & Key Milestones */}
-      <section id="about" className="py-20 lg:py-24 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
+      <section id="about" className="py-12 lg:py-14 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
         {/* Subtle background brand gradient circle */}
         <div className="absolute top-1/2 -left-40 w-96 h-96 bg-[#EBF6EE]/70 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           {/* Header */}
-          <div className="max-w-3xl mb-14 space-y-3">
+          <div className="max-w-3xl mb-8 sm:mb-10 space-y-2.5">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight leading-[1.12]">
               Rooted in Ethiopian Highlands, <br />
               <span className="text-[#1E5E3A] italic font-normal">
@@ -97,7 +72,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
           </div>
 
           {/* 4 Company Metric Highlights */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-8 sm:mb-10">
             <div className="bg-[#FAFDFB] p-5 sm:p-6 rounded-3xl border border-[#DCEBDD] space-y-2 hover:border-[#1E5E3A]/40 transition-all hover:-translate-y-1 duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#EBF6EE] text-[#1E5E3A] flex items-center justify-center font-bold">
                 <Users size={20} />
@@ -144,11 +119,11 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
           </div>
 
           {/* Dual Visual Showcase: Lab Cupping + Highland Farm */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
 
             {/* Left Image: Cupping Lab */}
             <div className="lg:col-span-6 relative group">
-              <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-[#FAF8F5] h-72 sm:h-80 relative">
+              <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-[#FAF8F5] h-64 sm:h-72 relative">
                 <img
                   src={cuppingLabImg}
                   alt="Certified Q-graders testing Ethiopian coffee in Celin Coffee cupping lab"
@@ -167,7 +142,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
 
             {/* Right Image: Origin Farm */}
             <div className="lg:col-span-6 relative group">
-              <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-[#FAF8F5] h-72 sm:h-80 relative">
+              <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-[#FAF8F5] h-64 sm:h-72 relative">
                 <img
                   src={farmImg}
                   alt="Shade-grown Ethiopian coffee agroforestry at 2,000m altitude"
@@ -190,11 +165,11 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
       </section>
 
       {/* 5. SEED-TO-CUP QUALITY & EXPORT PROCESS (Rich Photographic Steps) */}
-      <section id="journey" className="py-20 lg:py-24 bg-[#FAF8F5] border-b border-[#DCEBDD] relative overflow-hidden">
+      <section id="journey" className="py-12 lg:py-14 bg-[#FAF8F5] border-b border-[#DCEBDD] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2.5">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-2">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight">
               From Highland Soil to Container Seal.
             </h2>
@@ -204,11 +179,11 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
           </div>
 
           {/* 4 Process Photo Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
 
             {/* Step 1 */}
             <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#DCEBDD] shadow-xs hover:shadow-xl hover:border-[#1E5E3A]/40 transition-all duration-300 flex flex-col group">
-              <div className="h-44 rounded-2xl overflow-hidden relative mb-4">
+              <div className="h-40 sm:h-44 rounded-2xl overflow-hidden relative mb-3 sm:mb-4">
                 <img
                   src={farmImg}
                   alt="Selective handpicking in Ethiopian highlands"
@@ -232,7 +207,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
 
             {/* Step 2 */}
             <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#DCEBDD] shadow-xs hover:shadow-xl hover:border-[#1E5E3A]/40 transition-all duration-300 flex flex-col group">
-              <div className="h-44 rounded-2xl overflow-hidden relative mb-4">
+              <div className="h-40 sm:h-44 rounded-2xl overflow-hidden relative mb-3 sm:mb-4">
                 <img
                   src={dryingBedsImg}
                   alt="Sun drying on African raised beds"
@@ -256,7 +231,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
 
             {/* Step 3 */}
             <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#DCEBDD] shadow-xs hover:shadow-xl hover:border-[#1E5E3A]/40 transition-all duration-300 flex flex-col group">
-              <div className="h-44 rounded-2xl overflow-hidden relative mb-4">
+              <div className="h-40 sm:h-44 rounded-2xl overflow-hidden relative mb-3 sm:mb-4">
                 <img
                   src={cuppingLabImg}
                   alt="Certified Q-grading and lab cupping"
@@ -280,7 +255,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
 
             {/* Step 4 */}
             <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#DCEBDD] shadow-xs hover:shadow-xl hover:border-[#1E5E3A]/40 transition-all duration-300 flex flex-col group">
-              <div className="h-44 rounded-2xl overflow-hidden relative mb-4">
+              <div className="h-40 sm:h-44 rounded-2xl overflow-hidden relative mb-3 sm:mb-4">
                 <img
                   src={packagingImg}
                   alt="GrainPro hermetic bags and custom valve packaging"
@@ -308,13 +283,13 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
       </section>
 
       {/* 6. SOURCING STORIES & COMMUNITY IMPACT */}
-      <section id="impact" className="py-20 lg:py-24 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
+      <section id="impact" className="py-12 lg:py-14 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
             {/* Left Column: Farmer Partnership Narrative */}
-            <div className="lg:col-span-6 space-y-6 text-left">
+            <div className="lg:col-span-6 space-y-4 sm:space-y-5 text-left">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight leading-tight">
                 Empowering Communities, <br />
                 <span className="text-[#1E5E3A] italic font-normal">
@@ -327,7 +302,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
               </p>
 
               {/* Farmer Quote Card */}
-              <div className="bg-[#FAFDFB] p-6 rounded-3xl border border-[#DCEBDD] space-y-4">
+              <div className="bg-[#FAFDFB] p-5 sm:p-6 rounded-3xl border border-[#DCEBDD] space-y-3 sm:space-y-4">
                 <div className="flex items-center gap-3.5">
                   <img
                     src={farmerImg}
@@ -346,11 +321,11 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
               </div>
 
               {/* CTA Action */}
-              <div className="pt-2 flex flex-wrap items-center gap-4">
+              <div className="pt-1 flex flex-wrap items-center gap-4">
                 <button
                   type="button"
                   onClick={handleGoProducts}
-                  className="inline-flex items-center gap-2 bg-[#382319] hover:bg-[#26160F] text-white font-medium px-6 py-3 rounded-full text-xs sm:text-sm shadow-sm transition-all hover:scale-[1.02] cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-[#382319] hover:bg-[#26160F] text-white font-medium px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm shadow-sm transition-all hover:scale-[1.02] cursor-pointer"
                 >
                   <span>Explore Harvest Lots</span>
                   <ArrowRight size={15} />
@@ -358,7 +333,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
                 <button
                   type="button"
                   onClick={handleGoContact}
-                  className="inline-flex items-center gap-2 bg-white hover:bg-[#FAFDFB] text-[#1E5E3A] border border-[#CDE5D1] font-semibold px-5 py-3 rounded-full text-xs sm:text-sm transition-all cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-white hover:bg-[#FAFDFB] text-[#1E5E3A] border border-[#CDE5D1] font-semibold px-4 py-2.5 sm:px-5 sm:py-3 rounded-full text-xs sm:text-sm transition-all cursor-pointer"
                 >
                   <span>Request Direct Pricing</span>
                 </button>
@@ -372,10 +347,10 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
                 <img
                   src={storyCeremonyImg}
                   alt="Traditional Habesha Buna ceremony and coffee heritage"
-                  className="w-full h-[400px] sm:h-[460px] object-cover group-hover:scale-103 transition-transform duration-700"
+                  className="w-full h-[320px] sm:h-[390px] object-cover group-hover:scale-103 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
                   <span className="text-[10px] font-bold uppercase tracking-wider bg-[#1E5E3A] px-2.5 py-0.5 rounded-full mb-1 inline-block">
                     Living Heritage
                   </span>
@@ -395,10 +370,10 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
       </section>
 
       {/* 7. GLOBAL ROASTERS & TESTIMONIALS */}
-      <section id="partners" className="py-20 lg:py-24 bg-[#FAF8F5] border-b border-[#DCEBDD]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section id="partners" className="py-12 lg:py-14 bg-[#FAF8F5] border-b border-[#DCEBDD]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
 
-          <div className="text-center max-w-2xl mx-auto space-y-2.5">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1C2621] tracking-tight">
               Trusted by Specialty Roasters Worldwide.
             </h2>
@@ -408,7 +383,7 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
           </div>
 
           {/* Specialty Roasters Logos Strip */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 py-3 border-y border-[#DCEBDD] text-xs font-bold tracking-widest text-[#2C3830] uppercase">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 py-2.5 border-y border-[#DCEBDD] text-xs font-bold tracking-widest text-[#2C3830] uppercase">
             <span>ROASTWORKS LONDON</span>
             <span className="text-[#A2B8A6]">•</span>
             <span>CAFE BERLIN</span>
@@ -421,11 +396,11 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
           </div>
 
           {/* 3 Review Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
 
             {/* Card 1 */}
-            <div className="bg-white p-6 sm:p-7 rounded-3xl border border-[#DCEBDD] shadow-xs space-y-4 flex flex-col justify-between hover:shadow-lg hover:border-[#1E5E3A]/40 transition-all">
-              <div className="space-y-3">
+            <div className="bg-white p-5 sm:p-6 rounded-3xl border border-[#DCEBDD] shadow-xs space-y-3.5 flex flex-col justify-between hover:shadow-lg hover:border-[#1E5E3A]/40 transition-all">
+              <div className="space-y-2.5">
                 <div className="flex items-center gap-1 text-amber-500">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
@@ -447,8 +422,8 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white p-6 sm:p-7 rounded-3xl border border-[#DCEBDD] shadow-xs space-y-4 flex flex-col justify-between hover:shadow-lg hover:border-[#1E5E3A]/40 transition-all">
-              <div className="space-y-3">
+            <div className="bg-white p-5 sm:p-6 rounded-3xl border border-[#DCEBDD] shadow-xs space-y-3.5 flex flex-col justify-between hover:shadow-lg hover:border-[#1E5E3A]/40 transition-all">
+              <div className="space-y-2.5">
                 <div className="flex items-center gap-1 text-amber-500">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
@@ -470,8 +445,8 @@ export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) 
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white p-6 sm:p-7 rounded-3xl border border-[#DCEBDD] shadow-xs space-y-4 flex flex-col justify-between hover:shadow-lg hover:border-[#1E5E3A]/40 transition-all">
-              <div className="space-y-3">
+            <div className="bg-white p-5 sm:p-6 rounded-3xl border border-[#DCEBDD] shadow-xs space-y-3.5 flex flex-col justify-between hover:shadow-lg hover:border-[#1E5E3A]/40 transition-all">
+              <div className="space-y-2.5">
                 <div className="flex items-center gap-1 text-amber-500">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={14} className="fill-amber-400 text-amber-400" />

@@ -3,7 +3,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 64px;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 

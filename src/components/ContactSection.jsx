@@ -5,12 +5,9 @@ import {
   MapPin,
   Send,
   CheckCircle2,
-  Globe,
   ShieldCheck,
   Clock,
-  Sparkles,
-  ArrowRight,
-  MessageCircle
+  ArrowRight
 } from "lucide-react";
 
 export default function ContactSection({ preselectedCoffee = "" }) {
@@ -44,7 +41,7 @@ export default function ContactSection({ preselectedCoffee = "" }) {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 bg-gradient-to-b from-white via-[#F7FAF8] to-[#FAF8F5] border-t border-[#DCEBDD] relative overflow-hidden">
+    <section id="contact" className="py-12 lg:py-14 bg-gradient-to-b from-white via-[#F7FAF8] to-[#FAF8F5] border-t border-[#DCEBDD] relative overflow-hidden">
       {/* Background Decorative Floral Accents */}
       <div className="absolute top-0 right-0 w-96 h-96 opacity-10 pointer-events-none text-[#255D3A]">
         <svg viewBox="0 0 200 200" fill="currentColor">
@@ -56,7 +53,7 @@ export default function ContactSection({ preselectedCoffee = "" }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14 space-y-2.5">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-2">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight">
             Partner Directly with Origin.
           </h2>
@@ -66,13 +63,13 @@ export default function ContactSection({ preselectedCoffee = "" }) {
         </div>
 
         {/* 2-Column Responsive Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
 
           {/* Left Column: Direct Contact & Export Credentials (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-4 sm:space-y-5">
 
             {/* Quick Info Box */}
-            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#DCEBDD] shadow-xs space-y-5">
+            <div className="bg-white rounded-3xl p-5 sm:p-6 border border-[#DCEBDD] shadow-xs space-y-4">
               <h3 className="font-serif font-bold text-xl text-[#1C2621] pb-2 border-b border-stone-100 flex items-center justify-between">
                 <span>Addis Ababa Headquarters</span>
                 <span className="text-[10px] font-sans font-bold bg-[#EBF6EE] text-[#255D3A] px-2.5 py-0.5 rounded-full">
