@@ -2,8 +2,6 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Catalog from "./pages/Catalog";
-import Contact from "./pages/Contact";
 import CoffeeModal from "./components/CoffeeModal";
 import { MessageCircle, X } from "lucide-react";
 
@@ -14,6 +12,48 @@ function App() {
   const [showBanner, setShowBanner] = useState(true);
 
   const handleNavigate = (page, coffeeName = "", hash = "") => {
+    if (page === "story") {
+      setCurrentPage("home");
+      setTimeout(() => {
+        const el = document.querySelector("#story");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }, 100);
+      return;
+    }
+
+    if (page === "catalog" || page === "products") {
+      setCurrentPage("home");
+      setTimeout(() => {
+        const el = document.querySelector("#products");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }, 100);
+      return;
+    }
+
+    if (page === "contact") {
+      if (coffeeName) {
+        setPreselectedCoffee(coffeeName);
+      }
+      setCurrentPage("home");
+      setTimeout(() => {
+        const el = document.querySelector("#contact");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+        }
+      }, 100);
+      return;
+    }
+
     setCurrentPage(page);
     if (coffeeName) {
       setPreselectedCoffee(coffeeName);
@@ -73,18 +113,8 @@ function App() {
           <Home
             onNavigate={handleNavigate}
             onSelectCoffee={(coffee) => setModalCoffee(coffee)}
+            preselectedCoffee={preselectedCoffee}
           />
-        )}
-
-        {currentPage === "catalog" && (
-          <Catalog
-            onNavigate={handleNavigate}
-            onSelectCoffee={(coffee) => setModalCoffee(coffee)}
-          />
-        )}
-
-        {currentPage === "contact" && (
-          <Contact preselectedCoffee={preselectedCoffee} />
         )}
       </div>
 

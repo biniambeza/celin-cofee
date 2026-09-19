@@ -1,107 +1,174 @@
-import { ArrowRight } from "lucide-react";
-import exportPouchesImg from "../assets/celin-export-pouches.jpg";
-import heroBg from "../assets/coffee-culture-hero.jpg";
+import { ArrowRight, Ship, ShieldCheck, HeartHandshake, Sprout } from "lucide-react";
+import heroMintCup from "../assets/hero-mint-cup.jpg";
 
 export default function Hero({ onNavigate }) {
   const handleCatalogClick = (e) => {
     e.preventDefault();
-    if (onNavigate) {
-      onNavigate("catalog");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    const el = document.querySelector("#products");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else if (onNavigate) {
+      onNavigate("home", null, "#products");
     }
   };
 
   return (
-    <section id="home" className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden text-white min-h-[92vh] flex items-center">
-      {/* 1. Full Panoramic Coffee Culture Background Image extending behind navbar */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        {/* Cinematic gradient overlays: deep left gradient for text readability, subtle bottom blend */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/65 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-transparent to-black/60" />
+    <section id="home" className="relative pt-24 sm:pt-28 md:pt-32 pb-14 sm:pb-16 bg-gradient-to-b from-[#EBF6EE] via-[#E6F4EA] to-[#E2F1E5] text-[#1C2621] overflow-hidden">
+      
+      {/* Decorative Botanical Leaf Silhouettes on bottom left matching reference */}
+      <div className="absolute -bottom-10 -left-12 w-80 h-80 opacity-25 pointer-events-none text-[#7AA884]">
+        <svg viewBox="0 0 200 200" fill="currentColor">
+          <path d="M40 180 C20 120 70 80 130 50 C110 90 90 140 40 180 Z" />
+          <path d="M15 155 C35 105 95 105 125 75 C85 105 65 135 15 155 Z" />
+          <path d="M60 190 C75 140 120 110 170 85 C145 120 115 160 60 190 Z" />
+        </svg>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        {/* Top Hero Grid: Left Narrative + Right Cup Visual */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Clean & Simple Coffee Culture Content */}
-          <div className="lg:col-span-6 text-center lg:text-left space-y-6">
+          {/* Left Column: Clean & Elegant Headline matching reference */}
+          <div className="lg:col-span-6 text-left space-y-6">
             
-            {/* Origin & Culture Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#85E288] text-xs font-bold uppercase tracking-wider shadow-lg">
-              <span className="w-2 h-2 rounded-full bg-[#09bd3c] animate-pulse" />
-              <span>Authentic Ethiopian Coffee Culture</span>
+            {/* Category Tag with trailing line */}
+            <div className="flex items-center gap-2.5">
+              <span className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#255D3A] uppercase">
+                PREMIUM ETHIOPIAN COFFEE
+              </span>
+              <span className="w-9 h-[1.5px] bg-[#255D3A]/60" />
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
-              CELIN COFFEE: Exquisite <br />
-              Single Origin Beans, <br />
-              Crafted for Global Export.
+            {/* Main Headline - Dual Tone Serif */}
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.6rem] xl:text-[4.1rem] font-serif font-bold tracking-tight leading-[1.08]">
+              <span className="text-[#1C2621] block">
+                Authentic Origins.
+              </span>
+              <span className="text-[#255D3A] block mt-1">
+                Exceptional Quality.
+              </span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-stone-200/95 text-sm sm:text-base md:text-lg max-w-lg mx-auto lg:mx-0 leading-relaxed font-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
-              Direct from Ethiopia's legendary mountain highlands to roasters worldwide. Sourced with honor, roasted to perfection, and shared with generational reverence.
+            {/* Subtitle / Description */}
+            <p className="text-[#3D4D42] text-sm sm:text-base lg:text-lg max-w-lg leading-relaxed font-normal">
+              We source, pack and export premium Ethiopian coffee beans, connecting global markets with the rich heritage of our highlands.
             </p>
 
-            {/* CTA Button matching warm orange accent */}
-            <div className="pt-2 flex justify-center lg:justify-start">
+            {/* CTA Button */}
+            <div className="pt-2">
               <button
                 type="button"
                 onClick={handleCatalogClick}
-                className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#E06428] hover:bg-[#c9531c] text-white font-extrabold shadow-xl shadow-[#E06428]/35 transition-all hover:scale-[1.03] active:scale-[0.98] cursor-pointer text-sm sm:text-base"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#382319] hover:bg-[#26160F] text-white font-medium text-xs sm:text-sm shadow-md shadow-[#382319]/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
-                <span>Explore Wholesale Catalog</span>
-                <ArrowRight size={18} />
+                <span>Explore Our Products</span>
+                <span className="text-sm font-bold leading-none">→</span>
               </button>
             </div>
 
           </div>
 
-          {/* Right Column: Three Coffee Pouches Showcase */}
+          {/* Right Column: Mint Cup & Beans Highland Visual with Watermark */}
           <div className="lg:col-span-6 relative flex flex-col items-center justify-center">
             
-            {/* Organic rounded backdrop glow */}
-            <div className="absolute w-[340px] sm:w-[480px] h-[340px] sm:h-[480px] rounded-full bg-[#12533F]/50 -z-0 blur-2xl" />
-
-            {/* Product Image Frame */}
-            <div className="relative z-10 w-full max-w-lg rounded-3xl sm:rounded-[2.25rem] overflow-hidden shadow-2xl shadow-black/80 border-2 border-white/20 backdrop-blur-xs group">
+            {/* Visual Container */}
+            <div className="relative w-full max-w-xl mx-auto rounded-3xl sm:rounded-[2.25rem] overflow-hidden shadow-2xl shadow-[#1C2621]/15 border-4 border-white/80 group">
               <img
-                src={exportPouchesImg}
-                alt="Celin Coffee Ethiopian Single Origin pouches: Yirgacheffe Premier, Sidamo Gold, and Harrar Reserve"
+                src={heroMintCup}
+                alt="Freshly brewed Ethiopian specialty coffee in sage mint cup with roasted beans spilling from jute sack overlooking lush mountain highlands"
                 className="w-full h-auto object-cover transform group-hover:scale-103 transition-transform duration-700 ease-out"
               />
-            </div>
 
-            {/* Pagination dots matching reference */}
-            <div className="flex items-center gap-2 mt-6 z-10">
-              <span className="w-5 h-2 rounded-full bg-[#E06428] shadow-xs" />
-              <span className="w-2 h-2 rounded-full bg-white/50" />
-              <span className="w-2 h-2 rounded-full bg-white/50" />
+              {/* Watermark text: "From Ethiopia to the World" + Botanical Branch Doodle */}
+              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 text-white text-right pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+                <p className="font-serif italic text-base sm:text-lg lg:text-xl font-normal tracking-wide leading-tight">
+                  From Ethiopia <br /> to the World
+                </p>
+                <div className="flex justify-end mt-1 opacity-90">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M12 2C8 6 6 12 12 22C18 12 16 6 12 2Z" />
+                    <circle cx="12" cy="14" r="2" fill="currentColor" />
+                    <circle cx="9" cy="18" r="1.5" fill="currentColor" />
+                    <circle cx="15" cy="18" r="1.5" fill="currentColor" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Soft overlay gradient to ensure watermark legibility */}
+              <div className="absolute top-0 right-0 w-48 h-32 bg-gradient-to-bl from-black/40 via-black/10 to-transparent pointer-events-none" />
             </div>
 
           </div>
 
         </div>
-      </div>
 
-      {/* Organic Bottom Curve to smoothly connect to next section */}
-      <div className="absolute -bottom-1 left-0 right-0 w-full overflow-hidden leading-none pointer-events-none z-10">
-        <svg
-          viewBox="0 0 1440 60"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-6 sm:h-12"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,0 C360,50 1080,50 1440,0 L1440,60 L0,60 Z"
-            fill="#FAF8F5"
-          />
-        </svg>
+        {/* Bottom 4 Trust Pillars Strip matching reference */}
+        <div className="mt-14 sm:mt-18 pt-10 border-t border-[#D5EAD9]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            
+            {/* Pillar 1: Premium Grade Beans */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-[#D4EBD9] text-[#255D3A] flex items-center justify-center shrink-0 shadow-xs">
+                <Sprout size={22} className="stroke-[2.2]" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-bold text-sm sm:text-base text-[#1C2621]">
+                  Premium Grade Beans
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A5D50] leading-relaxed">
+                  Handpicked, naturally processed, full of flavor.
+                </p>
+              </div>
+            </div>
+
+            {/* Pillar 2: Global Export */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-[#D4EBD9] text-[#255D3A] flex items-center justify-center shrink-0 shadow-xs">
+                <Ship size={22} className="stroke-[2.2]" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-bold text-sm sm:text-base text-[#1C2621]">
+                  Global Export
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A5D50] leading-relaxed">
+                  Reliable logistics and timely delivery worldwide.
+                </p>
+              </div>
+            </div>
+
+            {/* Pillar 3: Quality Assured */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-[#D4EBD9] text-[#255D3A] flex items-center justify-center shrink-0 shadow-xs">
+                <ShieldCheck size={22} className="stroke-[2.2]" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-bold text-sm sm:text-base text-[#1C2621]">
+                  Quality Assured
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A5D50] leading-relaxed">
+                  Fully certified and lab tested for your confidence.
+                </p>
+              </div>
+            </div>
+
+            {/* Pillar 4: Long-Term Partnerships */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-[#D4EBD9] text-[#255D3A] flex items-center justify-center shrink-0 shadow-xs">
+                <HeartHandshake size={22} className="stroke-[2.2]" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-bold text-sm sm:text-base text-[#1C2621]">
+                  Long-Term Partnerships
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A5D50] leading-relaxed">
+                  Building sustainable trade for a better tomorrow.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
   );

@@ -96,7 +96,7 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
             <button
               type="button"
-              onClick={() => handleNavClick("home", "#about")}
+              onClick={() => handleNavClick("home", "#story")}
               className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
             >
               Our Story
@@ -104,12 +104,8 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
             <button
               type="button"
-              onClick={() => handleNavClick("catalog")}
-              className={`text-xs sm:text-[13.5px] font-medium tracking-normal transition-colors py-1 cursor-pointer bg-transparent border-none flex items-center gap-1 ${
-                currentPage === "catalog"
-                  ? "text-[#1E5E3A] font-bold relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-[#1E5E3A] after:rounded-full"
-                  : "text-[#2C3830] hover:text-[#1E5E3A]"
-              }`}
+              onClick={() => handleNavClick("home", "#products")}
+              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none flex items-center gap-1"
             >
               <span>Products</span>
               <ChevronDown size={13} className="opacity-75" />
@@ -133,12 +129,8 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
             <button
               type="button"
-              onClick={() => handleNavClick("contact")}
-              className={`text-xs sm:text-[13.5px] font-medium tracking-normal transition-colors py-1 cursor-pointer bg-transparent border-none ${
-                currentPage === "contact"
-                  ? "text-[#1E5E3A] font-bold relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-[#1E5E3A] after:rounded-full"
-                  : "text-[#2C3830] hover:text-[#1E5E3A]"
-              }`}
+              onClick={() => handleNavClick("home", "#contact")}
+              className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
             >
               Contact
             </button>
@@ -181,7 +173,7 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
             {/* Reference-matching Rich Espresso Brown Pill CTA Button */}
             <button
               type="button"
-              onClick={() => handleNavClick("contact")}
+              onClick={() => handleNavClick("home", "#contact")}
               className="inline-flex items-center justify-center gap-1.5 bg-[#382319] hover:bg-[#26160F] text-white text-xs sm:text-[13px] font-medium px-5 py-2.5 rounded-full shadow-xs hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               <span>Request a Quote</span>
@@ -218,7 +210,7 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
           <button
             type="button"
-            onClick={() => handleNavClick("home", "#about")}
+            onClick={() => handleNavClick("home", "#story")}
             className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
           >
             <span>Our Story</span>
@@ -227,13 +219,11 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
           <button
             type="button"
-            onClick={() => handleNavClick("catalog")}
-            className={`text-left text-sm font-bold py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${
-              currentPage === "catalog" ? "text-[#1E5E3A] bg-white/70" : "text-[#2C3830] hover:text-[#1E5E3A]"
-            }`}
+            onClick={() => handleNavClick("home", "#products")}
+            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
           >
             <span>Products</span>
-            <ChevronRight size={16} className={currentPage === "catalog" ? "text-[#1E5E3A]" : "text-stone-400"} />
+            <ChevronRight size={16} className="text-stone-400" />
           </button>
 
           <button
@@ -256,18 +246,16 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
           <button
             type="button"
-            onClick={() => handleNavClick("contact")}
-            className={`text-left text-sm font-bold py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${
-              currentPage === "contact" ? "text-[#1E5E3A] bg-white/70" : "text-[#2C3830] hover:text-[#1E5E3A]"
-            }`}
+            onClick={() => handleNavClick("home", "#contact")}
+            className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
           >
             <span>Contact</span>
-            <ChevronRight size={16} className={currentPage === "contact" ? "text-[#1E5E3A]" : "text-stone-400"} />
+            <ChevronRight size={16} className="text-stone-400" />
           </button>
 
           <button
             type="button"
-            onClick={() => handleNavClick("contact")}
+            onClick={() => handleNavClick("home", "#contact")}
             className="mt-3 flex items-center justify-center gap-2 bg-[#382319] hover:bg-[#26160F] text-white font-medium py-2.5 rounded-full shadow-md transition-all cursor-pointer text-xs"
           >
             <span>Request a Quote</span>

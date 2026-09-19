@@ -24,7 +24,7 @@ export default function Footer({ onNavigate }) {
   };
 
   return (
-    <footer id="contact" className="bg-[#21120B] text-[#D8C7B5] border-t border-[#4A2917] relative overflow-hidden font-sans">
+    <footer id="footer" className="bg-[#21120B] text-[#D8C7B5] border-t border-[#4A2917] relative overflow-hidden font-sans">
       {/* Subtle top dual-tone hairline accent */}
       <div className="h-0.5 w-full bg-gradient-to-r from-[#09bd3c] via-[#C48B58] to-[#09bd3c] opacity-70" />
 
@@ -77,6 +77,15 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
+                  onClick={() => handleLinkClick("home", "#story")}
+                  className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left font-medium text-[#85E288]"
+                >
+                  Our Story (Habesha Buna)
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
                   onClick={() => handleLinkClick("home", "#about")}
                   className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
@@ -86,7 +95,7 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick("catalog")}
+                  onClick={() => handleLinkClick("home", "#products")}
                   className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
                   Wholesale Lots
@@ -131,7 +140,7 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick("catalog")}
+                  onClick={() => handleLinkClick("home", "#products")}
                   className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
                   Single Origin
@@ -149,7 +158,7 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick("contact")}
+                  onClick={() => handleLinkClick("home", "#contact")}
                   className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
                   Careers
@@ -158,7 +167,7 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick("contact")}
+                  onClick={() => handleLinkClick("home", "#contact")}
                   className="hover:text-[#F5EDE4] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
                   Trade Desk

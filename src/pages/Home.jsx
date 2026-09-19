@@ -16,223 +16,46 @@ import {
   Quote
 } from "lucide-react";
 import Hero from "../components/Hero";
+import OurStorySection from "../components/OurStorySection";
+import ProductsSection from "../components/ProductsSection";
+import ContactSection from "../components/ContactSection";
 
 // Custom generated and project assets
-import pouchYirgacheffe from "../assets/pouch-yirgacheffe.jpg";
-import pouchSidamo from "../assets/pouch-sidamo.jpg";
-import pouchHarar from "../assets/pouch-harar.jpg";
-import pouchLimu from "../assets/pouch-limu.jpg";
 import jebenaImg from "../assets/jebena-ceremony.jpg";
 import farmImg from "../assets/coffee-farm.jpg";
 import farmerImg from "../assets/farmer.jpg";
 
-export default function Home({ onNavigate, onSelectCoffee }) {
+export default function Home({ onNavigate, onSelectCoffee, preselectedCoffee }) {
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
 
   const handleInquire = (coffeeName) => {
     if (onNavigate) {
       onNavigate("contact", coffeeName);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const el = document.querySelector("#contact");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const handleGoCatalog = () => {
-    if (onNavigate) {
-      onNavigate("catalog");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleGoProducts = () => {
+    const el = document.querySelector("#products");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else if (onNavigate) {
+      onNavigate("home", null, "#products");
     }
   };
-
-  const catalogLots = [
-    {
-      id: "yirgacheffe-premier",
-      name: "Yirgacheffe Premier",
-      region: "Ethiopia - Yirgacheffe",
-      roast: "Light",
-      flavorNotes: "Floral & Citrus",
-      tastingNotesText: "Jasmine, Bergamot & Lemon Blossom",
-      minOrder: "1 Tonne | USD 28.50/kg | Bulk Pricing",
-      image: pouchYirgacheffe,
-      bgColor: "bg-[#F7F3EB]",
-      score: 88.5,
-      process: "Washed",
-      altitude: "1,950m - 2,200m",
-      description: "Intensely floral with bergamot tea clarity, clean jasmine sweetness, and delicate citrus acidity."
-    },
-    {
-      id: "sidamo-gold",
-      name: "Sidamo Gold",
-      region: "Ethiopia - Sidamo",
-      roast: "Medium",
-      flavorNotes: "Chocolatey & Berry",
-      tastingNotesText: "Wild Blueberry, Cocoa & Honey",
-      minOrder: "1 Tonne | USD 28.50/kg | Bulk Pricing",
-      image: pouchSidamo,
-      bgColor: "bg-[#F8EFE6]",
-      score: 87.8,
-      process: "Natural",
-      altitude: "1,920m - 2,180m",
-      description: "Sun-dried natural with lush blueberry sweetness, rich cocoa body, and a vibrant fruit-forward finish."
-    },
-    {
-      id: "harar-sun-dried",
-      name: "Harar Sun-Dried",
-      region: "Ethiopia - Harar",
-      roast: "Medium Dark",
-      flavorNotes: "Spicy & Fruity",
-      tastingNotesText: "Wild Berry, Cardamom & Dark Chocolate",
-      minOrder: "1 Tonne | USD 22.00/kg | Bulk Pricing",
-      image: pouchHarar,
-      bgColor: "bg-[#F5ECE8]",
-      score: 86.5,
-      process: "Natural",
-      altitude: "1,800m - 2,100m",
-      description: "Historic ancient heirloom longberry. Complex dark berry, cardamon spice, and wine-like resonance."
-    },
-    {
-      id: "limu-heirloom",
-      name: "Limu Heirloom",
-      region: "Ethiopia - Limu",
-      roast: "Medium",
-      flavorNotes: "Smooth & Nutty",
-      tastingNotesText: "Apricot, Sweet Wine & Toffee",
-      minOrder: "1 Tonne | USD 26.00/kg | Bulk Pricing",
-      image: pouchLimu,
-      bgColor: "bg-[#EBF2F0]",
-      score: 87.2,
-      process: "Washed",
-      altitude: "1,750m - 2,000m",
-      description: "Balanced highland cup with crisp stone fruit brightness, caramel sweetness, and silky mouthfeel."
-    }
-  ];
 
   return (
     <div className="bg-[#FAF8F5] text-stone-900 selection:bg-[#09bd3c] selection:text-white">
       {/* 1. Hero Section */}
       <Hero onNavigate={onNavigate} />
 
-      {/* 2. OUR EXPORT CATALOG Section (Matching Reference Left Column) */}
-      <section id="catalog" className="py-20 lg:py-24 relative overflow-hidden">
-        {/* Subtle Ethiopian Ge'ez Script Watermark Background */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.035] select-none overflow-hidden font-serif text-3xl leading-loose tracking-widest text-stone-900 break-words z-0 p-8">
-          የኢትዮጵያ ቡና ጥራት ቅርስ ገበያ ኤክስፖርት ይርጋጨፌ ሲዳሞ ሀረር ሊሙ ጉጂ ጅማ ወለጋ አዲስ አበባ ቡና ፈላስፋ ገበሬዎች የቡና ባህል ጀበና መሶብ
-          የኢትዮጵያ ቡና ጥራት ቅርስ ገበያ ኤክስፖርት ይርጋጨፌ ሲዳሞ ሀረር ሊሙ ጉጂ ጅማ ወለጋ አዲስ አበባ ቡና ፈላስፋ ገበሬዎች የቡና ባህል ጀበና መሶብ
-          የኢትዮጵያ ቡና ጥራት ቅርስ ገበያ ኤክስፖርት ይርጋጨፌ ሲዳሞ ሀረር ሊሙ ጉጂ ጅማ ወለጋ አዲስ አበባ ቡና ፈላስፋ ገበሬዎች የቡና ባህል ጀበና መሶብ
-        </div>
+      {/* 2. OUR STORY (Habesha Coffee Heritage & Living Buna Ceremony) */}
+      <OurStorySection onNavigate={onNavigate} />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          {/* Section Header */}
-          <div className="space-y-1.5 mb-12 text-center lg:text-left">
-            <span className="text-xs uppercase font-extrabold tracking-widest text-[#E06428] block">
-              OUR EXPORT CATALOG
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900 tracking-tight font-display">
-              OUR EXPORT CATALOG
-            </h2>
-          </div>
-
-          {/* 2x2 Grid of Product Cards directly matching reference image */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-            {catalogLots.map((coffee) => (
-              <div
-                key={coffee.id}
-                className="bg-white rounded-[2rem] p-6 sm:p-7 shadow-xl shadow-stone-200/60 border border-stone-200/80 flex flex-col sm:flex-row gap-6 hover:shadow-2xl hover:border-[#0C4533]/30 transition-all duration-300 group"
-              >
-                {/* Pouch Image Frame */}
-                <div className={`w-full sm:w-48 h-56 sm:h-auto ${coffee.bgColor} rounded-2xl flex items-center justify-center p-3 relative overflow-hidden shrink-0 border border-stone-100 group-hover:scale-[1.02] transition-transform`}>
-                  <img
-                    src={coffee.image}
-                    alt={coffee.name}
-                    className="h-full max-h-52 w-auto object-contain drop-shadow-md"
-                  />
-                  <div className="absolute top-2 left-2 bg-[#0C4533] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                    SCA {coffee.score}
-                  </div>
-                </div>
-
-                {/* Card Specs and Actions */}
-                <div className="flex-1 flex flex-col justify-between space-y-4">
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-stone-900 group-hover:text-[#0C4533] transition-colors">
-                      {coffee.name}
-                    </h3>
-                    <p className="text-xs font-semibold text-stone-500 mb-3">
-                      {coffee.region}
-                    </p>
-
-                    {/* Specifications List */}
-                    <div className="space-y-1.5 text-xs text-stone-700 bg-stone-50/80 p-3.5 rounded-xl border border-stone-100">
-                      <p>
-                        <span className="font-bold text-stone-900">Min. Order:</span> {coffee.minOrder}
-                      </p>
-                      <p>
-                        <span className="font-bold text-stone-900">Roast:</span> {coffee.roast}
-                      </p>
-                      <p>
-                        <span className="font-bold text-stone-900">Flavor Profile:</span> {coffee.flavorNotes}
-                      </p>
-                      <p className="text-stone-500 text-[11px] pt-0.5">
-                        <span className="font-semibold text-stone-700">Notes:</span> {coffee.tastingNotesText}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Buttons matching reference */}
-                  <div className="flex items-center gap-3 pt-1">
-                    <button
-                      type="button"
-                      onClick={() => handleInquire(coffee.name)}
-                      className="flex-1 text-center bg-white hover:bg-stone-50 text-stone-800 font-bold py-2.5 px-4 rounded-full text-xs border border-stone-300 shadow-xs hover:border-[#0C4533] transition-all cursor-pointer"
-                    >
-                      Request Quote
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onSelectCoffee && onSelectCoffee(coffee)}
-                      className="text-center bg-[#0C4533] hover:bg-[#083526] text-white font-bold py-2.5 px-4 rounded-full text-xs shadow-xs transition-all hover:scale-105 cursor-pointer shrink-0"
-                    >
-                      View Specs
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom Trust Pillars beneath catalog matching reference */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 pt-12 border-t border-stone-200">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#0C4533]/10 text-[#0C4533] flex items-center justify-center shrink-0">
-                <Search size={24} className="text-[#09bd3c]" />
-              </div>
-              <div>
-                <h4 className="font-bold text-base text-stone-900 mb-1">
-                  Traceability
-                </h4>
-                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                  Source & wholesale providing transparent chain of custody from cooperative washing stations to export container seal.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#0C4533]/10 text-[#0C4533] flex items-center justify-center shrink-0">
-                <HeartHandshake size={24} className="text-[#E06428]" />
-              </div>
-              <div>
-                <h4 className="font-bold text-base text-stone-900 mb-1">
-                  Ethical Sourcing
-                </h4>
-                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                  Quality control agreement ensuring direct ethical premiums, living wages for farming families, and transparent export billing.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
+      {/* 3. PRODUCTS SECTION (Shortened, Compact Component) */}
+      <ProductsSection onNavigate={onNavigate} onSelectCoffee={onSelectCoffee} />
 
       {/* 3. THE JOURNEY OF CELIN COFFEE: Authentic Ethiopian Traceability (Matching Right Column Top) */}
       <section id="journey" className="py-20 lg:py-24 bg-white border-y border-stone-200/80">
@@ -360,7 +183,7 @@ export default function Home({ onNavigate, onSelectCoffee }) {
             <div className="pt-2">
               <button
                 type="button"
-                onClick={handleGoCatalog}
+                onClick={handleGoProducts}
                 className="inline-flex items-center gap-2 bg-[#0C4533] hover:bg-[#083526] text-white font-bold px-7 py-3 rounded-full text-xs sm:text-sm shadow-md transition-all hover:scale-105 cursor-pointer"
               >
                 <span>Learn More About Our Farms</span>
@@ -472,6 +295,9 @@ export default function Home({ onNavigate, onSelectCoffee }) {
 
         </div>
       </section>
+
+      {/* 6. CONTACT & EXPORT TRADE DESK (Shortened, Attractive Component) */}
+      <ContactSection preselectedCoffee={preselectedCoffee} />
     </div>
   );
 }
