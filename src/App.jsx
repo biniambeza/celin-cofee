@@ -1,82 +1,40 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
+import Hero from "./components/Hero";
+import About from "./pages/About";
+import Journey from "./pages/Journey";
+import OurStorySection from "./components/OurStorySection";
+import ProductsSection from "./components/ProductsSection";
+import ContactSection from "./components/ContactSection";
 import CoffeeModal from "./components/CoffeeModal";
 import { X } from "lucide-react";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("home");
   const [preselectedCoffee, setPreselectedCoffee] = useState("");
   const [modalCoffee, setModalCoffee] = useState(null);
-  const [showBanner, setShowBanner] = useState(true);
+  const [showBanner, setShowBanner] = useState(false);
 
-  const handleNavigate = (page, coffeeName = "", hash = "") => {
-    if (page === "story") {
-      setCurrentPage("home");
-      setTimeout(() => {
-        const el = document.querySelector("#story");
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      }, 100);
-      return;
-    }
-
-    if (page === "catalog" || page === "products") {
-      setCurrentPage("home");
-      setTimeout(() => {
-        const el = document.querySelector("#products");
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      }, 100);
-      return;
-    }
-
-    if (page === "contact") {
-      if (coffeeName) {
-        setPreselectedCoffee(coffeeName);
-      }
-      setCurrentPage("home");
-      setTimeout(() => {
-        const el = document.querySelector("#contact");
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-        }
-      }, 100);
-      return;
-    }
-
-    setCurrentPage(page);
+  const handleNavigate = (target, coffeeName = "") => {
     if (coffeeName) {
       setPreselectedCoffee(coffeeName);
     }
-    if (hash) {
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      }, 100);
-    } else {
+    const targetId = target === "catalog" ? "products" : target;
+    if (targetId === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 selection:bg-[#1E5E3A] selection:text-white relative">
       
-      {/* 1. Top Trade Announcement Bar (shown on catalog & contact pages, preserving Home transparent hero) */}
-      {showBanner && currentPage !== "home" && (
+      {/* 1. Top Trade Announcement Bar (Optional) */}
+      {showBanner && (
         <div className="bg-[#1E5E3A] text-white text-xs py-2 px-4 text-center font-bold relative z-50 flex items-center justify-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-[#85E288] animate-pulse" />
           <span>
@@ -101,22 +59,23 @@ function App() {
       )}
 
       {/* 2. Sticky Navbar */}
-      <Navbar
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        onNavigate={handleNavigate}
-      />
+      <Navbar onNavigate={handleNavigate} />
 
-      {/* 3. Main Page Content Routing */}
-      <div className="flex-1">
-        {currentPage === "home" && (
-          <Home
-            onNavigate={handleNavigate}
-            onSelectCoffee={(coffee) => setModalCoffee(coffee)}
-            preselectedCoffee={preselectedCoffee}
-          />
-        )}
-      </div>
+      {/* 3. Main Single Page: Continuous full-screen components */}
+      <main className="flex-1">
+        <Hero onNavigate={handleNavigate} />
+        <OurStorySection onNavigate={handleNavigate} />
+        <ProductsSection
+          onNavigate={handleNavigate}
+          onSelectCoffee={(coffee) => setModalCoffee(coffee)}
+        />
+        <About onNavigate={handleNavigate} />
+        <Journey onNavigate={handleNavigate} />
+        <ContactSection
+          preselectedCoffee={preselectedCoffee}
+          onNavigate={handleNavigate}
+        />
+      </main>
 
       {/* 4. Interactive Coffee Specs Modal */}
       {modalCoffee && (

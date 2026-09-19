@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { id: "contact", label: "Contact", hash: "#contact" },
 ];
 
-export default function Navbar({ setCurrentPage, onNavigate }) {
+export default function Navbar({ onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -20,7 +20,7 @@ export default function Navbar({ setCurrentPage, onNavigate }) {
   const navContainerRef = useRef(null);
   const navItemRefs = useRef({});
 
-  // Recalculate indicator position & width on active section change or resize
+  // Recalculate indicator position & width on activeSection change or window resize
   const updateIndicator = useCallback(() => {
     const activeBtn = navItemRefs.current[activeSection];
     const container = navContainerRef.current;
@@ -36,7 +36,6 @@ export default function Navbar({ setCurrentPage, onNavigate }) {
   }, [activeSection]);
 
   useEffect(() => {
-    // Immediate and small delay update to ensure DOM fonts and layouts are mounted
     updateIndicator();
     const timer = setTimeout(updateIndicator, 100);
 
@@ -49,33 +48,32 @@ export default function Navbar({ setCurrentPage, onNavigate }) {
     };
   }, [updateIndicator]);
 
-  // Scroll spy to dynamically track active component on page scroll
+  // Scroll spy to track which component currently occupies the screen
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
       // Check if user is near bottom of the page -> set to contact
-      const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 90;
+      const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
       if (isBottom) {
         setActiveSection("contact");
         return;
       }
 
-      // Offset for sticky navbar + breathing room
-      const scrollPos = window.scrollY + 140;
       const sectionIds = ["home", "story", "products", "about", "journey", "contact"];
+      const scrollPos = window.scrollY + window.innerHeight / 2.5;
 
-      let currentSection = "home";
+      let current = "home";
       for (const id of sectionIds) {
         const el = document.getElementById(id);
         if (el) {
           const top = el.offsetTop;
           if (scrollPos >= top) {
-            currentSection = id;
+            current = id;
           }
         }
       }
-      setActiveSection(currentSection);
+      setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -83,39 +81,31 @@ export default function Navbar({ setCurrentPage, onNavigate }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (target, hash, sectionId) => {
+  const handleNavClick = (targetId) => {
     setIsOpen(false);
-
-    if (sectionId) {
-      setActiveSection(sectionId);
-    }
+    setActiveSection(targetId);
 
     if (onNavigate) {
-      onNavigate(target, null, hash);
-    } else if (setCurrentPage) {
-      setCurrentPage(target);
-    }
-
-    if (hash) {
-      setTimeout(() => {
-        const element = document.querySelector(hash);
+      onNavigate(targetId);
+    } else {
+      if (targetId === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const element = document.getElementById(targetId);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
         }
-      }, 50);
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
           ? "bg-[#EBF6EE]/96 backdrop-blur-md border-b border-[#D2E9D6] shadow-xs py-1.5 sm:py-2"
           : "bg-[#EBF6EE]/92 backdrop-blur-md border-b border-[#D5EAD9]/80 py-2 sm:py-2.5"
-        }`}
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-11 sm:h-12">
@@ -123,7 +113,7 @@ export default function Navbar({ setCurrentPage, onNavigate }) {
           {/* Brand Logo - Leaf & Bean Emblem + Clean Dual-Line Typography */}
           <button
             type="button"
-            onClick={() => handleNavClick("home", "", "home")}
+            onClick={() => handleNavClick("home")}
             className="flex items-center gap-2 sm:gap-2.5 group text-left cursor-pointer border-none bg-transparent"
           >
             <div className="h-7.5 w-7.5 sm:h-8 sm:w-8 relative shrink-0 flex items-center justify-center">
@@ -155,11 +145,12 @@ export default function Navbar({ setCurrentPage, onNavigate }) {
                   key={item.id}
                   ref={(el) => (navItemRefs.current[item.id] = el)}
                   type="button"
-                  onClick={() => handleNavClick("home", item.hash, item.id)}
-                  className={`text-xs sm:text-[13px] tracking-normal transition-colors py-0.5 cursor-pointer bg-transparent border-none relative z-10 ${isActive
+                  onClick={() => handleNavClick(item.id)}
+                  className={`text-xs sm:text-[13px] tracking-normal transition-colors py-0.5 cursor-pointer bg-transparent border-none relative z-10 ${
+                    isActive
                       ? "text-[#1E5E3A] font-bold"
                       : "text-[#2C3830] hover:text-[#1E5E3A] font-medium"
-                    }`}
+                  }`}
                 >
                   {item.label}
                 </button>
@@ -199,11 +190,12 @@ export default function Navbar({ setCurrentPage, onNavigate }) {
               <button
                 key={item.id}
                 type="button"
-                onClick={() => handleNavClick("home", item.hash, item.id)}
-                className={`text-left text-sm py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${isActive
+                onClick={() => handleNavClick(item.id)}
+                className={`text-left text-sm py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${
+                  isActive
                     ? "text-[#1E5E3A] font-bold bg-white/80 border-l-4 border-[#1E5E3A] shadow-2xs"
                     : "text-[#2C3830] hover:text-[#1E5E3A] font-medium"
-                  }`}
+                }`}
               >
                 <span>{item.label}</span>
                 <ChevronRight
@@ -216,7 +208,7 @@ export default function Navbar({ setCurrentPage, onNavigate }) {
 
           <button
             type="button"
-            onClick={() => handleNavClick("home", "#contact", "contact")}
+            onClick={() => handleNavClick("contact")}
             className="mt-3 flex items-center justify-center gap-2 bg-[#382319] hover:bg-[#26160F] text-white font-medium py-2.5 rounded-full shadow-md transition-all cursor-pointer text-xs"
           >
             <span>Request a Quote</span>

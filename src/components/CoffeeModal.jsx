@@ -1,4 +1,4 @@
-import { X, Award, Flame, MapPin, CheckCircle2, ShieldCheck, Mail, ArrowRight, Sparkles } from "lucide-react";
+import { X, Award, Flame, MapPin, Mail, Sparkles } from "lucide-react";
 
 export default function CoffeeModal({ coffee, onClose, onInquire }) {
   if (!coffee) return null;
@@ -24,7 +24,7 @@ export default function CoffeeModal({ coffee, onClose, onInquire }) {
   } = coffee;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-stone-900/70 backdrop-blur-sm transition-opacity"
@@ -32,16 +32,16 @@ export default function CoffeeModal({ coffee, onClose, onInquire }) {
       />
 
       {/* Modal Card */}
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden border border-stone-100 z-10 animate-in fade-in zoom-in-95 duration-200 my-8">
+      <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-stone-100 z-10 animate-in fade-in zoom-in-95 duration-200 my-6">
         
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-stone-700 hover:text-stone-900 flex items-center justify-center shadow-md transition-all cursor-pointer"
+          className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-stone-700 hover:text-stone-900 flex items-center justify-center shadow-md transition-all cursor-pointer"
           aria-label="Close modal"
         >
-          <X size={20} />
+          <X size={16} />
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-12 max-h-[85vh] overflow-y-auto">
@@ -75,18 +75,18 @@ export default function CoffeeModal({ coffee, onClose, onInquire }) {
           </div>
 
           {/* Right Column: Detailed Specs (7 cols) */}
-          <div className="md:col-span-7 p-6 sm:p-8 space-y-6">
+          <div className="md:col-span-7 p-5 sm:p-6 space-y-4">
             
             {/* Header */}
             <div>
-              <div className="flex items-center gap-1.5 text-xs font-bold text-[#1E5E3A] uppercase tracking-wider mb-1">
-                <MapPin size={14} />
+              <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#1E5E3A] uppercase tracking-wider mb-1">
+                <MapPin size={13} />
                 <span>{region}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-stone-900 leading-tight">
+              <h3 className="text-xl sm:text-2xl font-bold text-stone-900 leading-tight">
                 {name}
               </h3>
-              <p className="text-stone-600 text-sm mt-2 leading-relaxed">
+              <p className="text-stone-600 text-xs sm:text-[13px] mt-1.5 leading-relaxed">
                 {description}
               </p>
             </div>

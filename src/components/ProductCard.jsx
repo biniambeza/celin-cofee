@@ -2,7 +2,6 @@ import { Award, Flame, MapPin, ArrowUpRight, Eye } from "lucide-react";
 
 export default function ProductCard({ product, onInquire, onSelect }) {
   const {
-    id,
     name = "Yirgacheffe Grade 1 Washed",
     region = "Gedeo Zone, Yirgacheffe",
     altitude = "1,950m - 2,200m",
@@ -32,10 +31,10 @@ export default function ProductCard({ product, onInquire, onSelect }) {
   return (
     <div
       onClick={handleCardClick}
-      className="group bg-white rounded-3xl border border-stone-200/90 hover:border-[#1E5E3A]/50 shadow-xs hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1.5 cursor-pointer relative"
+      className="group bg-white rounded-2xl border border-stone-200/90 hover:border-[#1E5E3A]/50 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1 cursor-pointer relative"
     >
       {/* Image Container with Badges */}
-      <div className="relative h-64 w-full overflow-hidden bg-stone-900">
+      <div className="relative h-52 w-full overflow-hidden bg-stone-900">
         <img
           src={image}
           alt={name}

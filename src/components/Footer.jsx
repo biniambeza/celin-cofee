@@ -4,21 +4,16 @@ import logoEmblem from "../assets/logo-emblem.png";
 export default function Footer({ onNavigate }) {
   const currentYear = new Date().getFullYear();
 
-  const handleLinkClick = (target, hash) => {
+  const handleLinkClick = (target) => {
     if (onNavigate) {
-      onNavigate(target, null, hash);
-    }
-    if (hash) {
-      setTimeout(() => {
-        const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      }, 100);
-    } else {
+      onNavigate(target);
+    } else if (target === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const element = document.getElementById(target);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -71,7 +66,7 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick("home", "#story")}
+                  onClick={() => handleLinkClick("story")}
                   className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
                   Our Story
@@ -80,7 +75,7 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick("home", "#products")}
+                  onClick={() => handleLinkClick("products")}
                   className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
                   Specialty Coffees
@@ -89,7 +84,7 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick("home", "#about")}
+                  onClick={() => handleLinkClick("about")}
                   className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
                   About Us
@@ -98,7 +93,7 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick("home", "#journey")}
+                  onClick={() => handleLinkClick("journey")}
                   className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
                   Quality & Export
@@ -107,7 +102,7 @@ export default function Footer({ onNavigate }) {
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick("home", "#contact")}
+                  onClick={() => handleLinkClick("contact")}
                   className="hover:text-[#1E5E3A] hover:translate-x-0.5 transition-all cursor-pointer bg-transparent border-none p-0 text-left"
                 >
                   Contact

@@ -80,28 +80,28 @@ export default function ProductsSection({ onNavigate, onSelectCoffee }) {
   };
 
   return (
-    <section id="products" className="py-12 lg:py-14 bg-white border-b border-[#DCEBDD] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="products" className="min-h-screen flex flex-col justify-center pt-13 sm:pt-15 pb-14 sm:pb-18 bg-white border-b border-[#DCEBDD] relative overflow-hidden scroll-mt-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full -translate-y-2 sm:-translate-y-4">
 
         {/* Shortened Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
-          <div className="space-y-2 text-left">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1C2621] tracking-tight">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-6 sm:mb-7">
+          <div className="space-y-1.5 text-left">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#1C2621] tracking-tight">
               Single Origin Harvests.
             </h2>
-            <p className="text-stone-600 text-sm sm:text-base max-w-xl">
+            <p className="text-stone-600 text-xs sm:text-sm max-w-xl">
               Certified Grade-1 Ethiopian Arabica beans, hand-sorted and profile-packaged for international roasters.
             </p>
           </div>
 
           {/* Clean Process Filter Tabs */}
-          <div className="flex items-center gap-2 bg-[#F4F9F5] p-1.5 rounded-full border border-[#D5EAD9] self-start md:self-auto shrink-0">
+          <div className="flex items-center gap-1.5 bg-[#F4F9F5] p-1 rounded-full border border-[#D5EAD9] self-start md:self-auto shrink-0">
             {["All", "Washed", "Natural"].map((tab) => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setFilter(tab)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer border-none ${filter === tab
+                className={`px-3.5 py-1 rounded-full text-[11px] font-semibold transition-all cursor-pointer border-none ${filter === tab
                   ? "bg-[#255D3A] text-white shadow-xs"
                   : "bg-transparent text-stone-600 hover:text-[#1C2621]"
                   }`}
@@ -113,48 +113,48 @@ export default function ProductsSection({ onNavigate, onSelectCoffee }) {
         </div>
 
         {/* 4 Shortened Product Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {filteredProducts.map((coffee) => (
             <div
               key={coffee.id}
-              className="bg-[#FAFDFB] rounded-3xl p-5 border border-[#DCEBDD] shadow-xs hover:shadow-xl hover:border-[#255D3A]/40 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-[#FAFDFB] rounded-2xl p-4 border border-[#DCEBDD] shadow-xs hover:shadow-xl hover:border-[#255D3A]/40 transition-all duration-300 flex flex-col justify-between group"
             >
               {/* Pouch Showcase Frame */}
-              <div className={`w-full h-52 ${coffee.bgColor} rounded-2xl flex items-center justify-center p-3 relative overflow-hidden shrink-0 border border-stone-100 group-hover:scale-[1.02] transition-transform`}>
+              <div className={`w-full h-44 ${coffee.bgColor} rounded-xl flex items-center justify-center p-2.5 relative overflow-hidden shrink-0 border border-stone-100 group-hover:scale-[1.02] transition-transform`}>
                 <img
                   src={coffee.image}
                   alt={coffee.name}
-                  className="h-full max-h-48 w-auto object-contain drop-shadow-md"
+                  className="h-full max-h-38 w-auto object-contain drop-shadow-md"
                 />
 
                 {/* SCA Score Badge */}
-                <div className="absolute top-2.5 left-2.5 bg-[#1C2621] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-xs flex items-center gap-1">
-                  <Award size={11} className="text-[#88E298]" />
+                <div className="absolute top-2 left-2 bg-[#1C2621] text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
+                  <Award size={10} className="text-[#88E298]" />
                   <span>SCA {coffee.score}</span>
                 </div>
 
                 {/* Process Pill */}
-                <div className="absolute top-2.5 right-2.5 bg-white/90 backdrop-blur-xs text-[#255D3A] text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow-2xs">
+                <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-xs text-[#255D3A] text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full shadow-2xs">
                   {coffee.process}
                 </div>
               </div>
 
               {/* Information */}
-              <div className="pt-4 space-y-3 flex-1 flex flex-col justify-between">
+              <div className="pt-3 space-y-2.5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-serif font-bold text-lg text-[#1C2621] group-hover:text-[#255D3A] transition-colors leading-snug">
+                  <h3 className="font-serif font-bold text-base text-[#1C2621] group-hover:text-[#255D3A] transition-colors leading-snug">
                     {coffee.name}
                   </h3>
-                  <p className="text-[11px] font-semibold text-stone-500 mt-0.5">
+                  <p className="text-[10px] font-semibold text-stone-500 mt-0.5">
                     {coffee.region} • {coffee.altitude}
                   </p>
 
                   {/* Flavor Notes Pills */}
-                  <div className="flex flex-wrap gap-1.5 mt-3">
+                  <div className="flex flex-wrap gap-1 mt-2.5">
                     {coffee.flavorNotes.map((note) => (
                       <span
                         key={note}
-                        className="text-[10px] font-medium bg-white px-2 py-0.5 rounded-md border border-[#DCEBDD] text-stone-700"
+                        className="text-[9.5px] font-medium bg-white px-1.5 py-0.5 rounded-md border border-[#DCEBDD] text-stone-700"
                       >
                         {note}
                       </span>
@@ -163,18 +163,18 @@ export default function ProductsSection({ onNavigate, onSelectCoffee }) {
                 </div>
 
                 {/* Card Action Buttons */}
-                <div className="pt-3 border-t border-[#E8F3EA] flex items-center gap-2">
+                <div className="pt-2.5 border-t border-[#E8F3EA] flex items-center gap-1.5">
                   <button
                     type="button"
                     onClick={() => handleInquire(coffee.name)}
-                    className="flex-1 text-center bg-[#382319] hover:bg-[#26160F] text-white font-medium py-2 px-3 rounded-full text-xs shadow-xs transition-all cursor-pointer"
+                    className="flex-1 text-center bg-[#382319] hover:bg-[#26160F] text-white font-medium py-1.5 px-2.5 rounded-full text-[11px] shadow-xs transition-all cursor-pointer"
                   >
                     Request Quote
                   </button>
                   <button
                     type="button"
                     onClick={() => onSelectCoffee && onSelectCoffee(coffee)}
-                    className="text-center bg-white hover:bg-[#F0F8F2] text-[#255D3A] font-semibold py-2 px-3 rounded-full text-xs border border-[#CDE5D1] transition-all cursor-pointer shrink-0"
+                    className="text-center bg-white hover:bg-[#F0F8F2] text-[#255D3A] font-semibold py-1.5 px-2.5 rounded-full text-[11px] border border-[#CDE5D1] transition-all cursor-pointer shrink-0"
                   >
                     Specs
                   </button>
