@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
 import Contact from "./pages/Contact";
 import CoffeeModal from "./components/CoffeeModal";
-import { MessageCircle, Globe, ArrowRight, X } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -35,8 +35,8 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 selection:bg-[#0C6052] selection:text-white relative">
       
-      {/* 1. Top Trade Announcement Bar */}
-      {showBanner && (
+      {/* 1. Top Trade Announcement Bar (shown on catalog & contact pages, preserving Home transparent hero) */}
+      {showBanner && currentPage !== "home" && (
         <div className="bg-[#0C6052] text-white text-xs py-2 px-4 text-center font-bold relative z-50 flex items-center justify-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-[#85E288] animate-pulse" />
           <span>
