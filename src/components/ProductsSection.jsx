@@ -6,7 +6,7 @@ import pouchSidamo from "../assets/pouch-sidamo.jpg";
 import pouchHarar from "../assets/pouch-harar.jpg";
 import pouchLimu from "../assets/pouch-limu.jpg";
 
-export const productsList = [
+const productsList = [
   {
     id: "yirgacheffe-premier",
     name: "Yirgacheffe Premier",

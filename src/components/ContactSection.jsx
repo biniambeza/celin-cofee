@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Mail,
   Phone,
@@ -22,14 +22,14 @@ export default function ContactSection({ preselectedCoffee = "" }) {
     message: "",
   });
 
-  useEffect(() => {
-    if (preselectedCoffee) {
-      setFormData((prev) => ({
-        ...prev,
-        origin: preselectedCoffee,
-      }));
-    }
-  }, [preselectedCoffee]);
+  const [prevCoffee, setPrevCoffee] = useState(preselectedCoffee);
+  if (preselectedCoffee !== prevCoffee) {
+    setPrevCoffee(preselectedCoffee);
+    setFormData((prev) => ({
+      ...prev,
+      origin: preselectedCoffee || "Yirgacheffe Premier",
+    }));
+  }
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
