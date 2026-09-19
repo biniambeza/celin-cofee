@@ -48,15 +48,14 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
           ? "bg-[#EBF6EE]/96 backdrop-blur-md border-b border-[#D2E9D6] shadow-sm py-2.5 sm:py-3"
           : "bg-[#EBF6EE]/92 backdrop-blur-md border-b border-[#D5EAD9]/80 py-3 sm:py-3.5"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
-          
+
           {/* Brand Logo - Leaf & Bean Emblem + Clean Dual-Line Typography matching reference */}
           <button
             type="button"
@@ -85,11 +84,10 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
             <button
               type="button"
               onClick={() => handleNavClick("home")}
-              className={`text-xs sm:text-[13.5px] font-medium tracking-normal transition-colors py-1 cursor-pointer bg-transparent border-none ${
-                currentPage === "home"
+              className={`text-xs sm:text-[13.5px] font-medium tracking-normal transition-colors py-1 cursor-pointer bg-transparent border-none ${currentPage === "home"
                   ? "text-[#1E5E3A] font-bold relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-[#1E5E3A] after:rounded-full"
                   : "text-[#2C3830] hover:text-[#1E5E3A]"
-              }`}
+                }`}
             >
               Home
             </button>
@@ -108,23 +106,23 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
               className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none flex items-center gap-1"
             >
               <span>Products</span>
-              <ChevronDown size={13} className="opacity-75" />
+
             </button>
 
             <button
               type="button"
-              onClick={() => handleNavClick("home", "#ceremony")}
+              onClick={() => handleNavClick("home", "#about")}
               className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
             >
-              Ceremony
+              About
             </button>
 
             <button
               type="button"
-              onClick={() => handleNavClick("home", "#export")}
+              onClick={() => handleNavClick("home", "#journey")}
               className="text-xs sm:text-[13.5px] font-medium tracking-normal text-[#2C3830] hover:text-[#1E5E3A] transition-colors py-1 cursor-pointer bg-transparent border-none"
             >
-              Export & Quality
+              Quality & Export
             </button>
 
             <button
@@ -138,7 +136,7 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
           {/* Right Area: Search Icon & Rich Espresso Brown "Request a Quote →" Pill Button */}
           <div className="hidden lg:flex items-center gap-4">
-            
+
             {/* Search Toggle / Input */}
             <div className="relative">
               {isSearchOpen ? (
@@ -200,9 +198,8 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
           <button
             type="button"
             onClick={() => handleNavClick("home")}
-            className={`text-left text-sm font-bold py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${
-              currentPage === "home" ? "text-[#1E5E3A] bg-white/70" : "text-[#2C3830] hover:text-[#1E5E3A]"
-            }`}
+            className={`text-left text-sm font-bold py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors ${currentPage === "home" ? "text-[#1E5E3A] bg-white/70" : "text-[#2C3830] hover:text-[#1E5E3A]"
+              }`}
           >
             <span>Home</span>
             <ChevronRight size={16} className={currentPage === "home" ? "text-[#1E5E3A]" : "text-stone-400"} />
@@ -228,19 +225,19 @@ export default function Navbar({ currentPage = "home", setCurrentPage, onNavigat
 
           <button
             type="button"
-            onClick={() => handleNavClick("home", "#ceremony")}
+            onClick={() => handleNavClick("home", "#about")}
             className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
           >
-            <span>Ceremony</span>
+            <span>About</span>
             <ChevronRight size={16} className="text-stone-400" />
           </button>
 
           <button
             type="button"
-            onClick={() => handleNavClick("home", "#export")}
+            onClick={() => handleNavClick("home", "#journey")}
             className="text-left text-sm font-medium text-[#2C3830] hover:text-[#1E5E3A] py-2 px-3 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
           >
-            <span>Export & Quality</span>
+            <span>Quality & Export</span>
             <ChevronRight size={16} className="text-stone-400" />
           </button>
 
