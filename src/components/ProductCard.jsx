@@ -1,109 +1,148 @@
-import { Award, Flame, MapPin, ArrowUpRight } from "lucide-react";
+import { Award, Flame, MapPin, ArrowUpRight, Eye } from "lucide-react";
 
-export default function ProductCard({ product }) {
-    // Fallback defaults in case a prop is omitted
-    const {
-        name = "Yirgacheffe Grade 1",
-        region = "Gedeo Zone, Yirgacheffe",
-        altitude = "1,950m - 2,200m",
-        process = "Washed",
-        roast = "Medium Roast",
-        score = 88.5,
-        flavorNotes = ["Floral", "Jasmine", "Citrus", "Bergamot"],
-        image = "https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=700&q=80",
-        packageType = "60kg GrainPro Jute Bags & 1kg Retail",
-    } = product || {};
+export default function ProductCard({ product, onInquire, onSelect }) {
+  const {
+    id,
+    name = "Yirgacheffe Grade 1 Washed",
+    region = "Gedeo Zone, Yirgacheffe",
+    altitude = "1,950m - 2,200m",
+    process = "Washed",
+    roast = "Medium Roast",
+    score = 88.5,
+    flavorNotes = ["Floral", "Jasmine", "Citrus", "Bergamot"],
+    image,
+    packageType = "60kg GrainPro Jute & 1kg Foil",
+    description,
+    fobPriceRange,
+  } = product || {};
 
-    return (
-        <div className="group bg-white rounded-3xl border border-stone-200/80 hover:border-[#0C6052]/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden">
+  const handleInquire = (e) => {
+    e.stopPropagation();
+    if (onInquire) {
+      onInquire(name);
+    }
+  };
 
-            {/* Image Container with Badges */}
-            <div className="relative h-60 w-full overflow-hidden bg-stone-100">
-                <img
-                    src={image}
-                    alt={name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                />
+  const handleCardClick = () => {
+    if (onSelect) {
+      onSelect(product);
+    }
+  };
 
-                {/* Subtle Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none" />
+  return (
+    <div
+      onClick={handleCardClick}
+      className="group bg-white rounded-3xl border border-stone-200/90 hover:border-[#0C6052]/50 shadow-xs hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1.5 cursor-pointer relative"
+    >
+      {/* Image Container with Badges */}
+      <div className="relative h-64 w-full overflow-hidden bg-stone-900">
+        <img
+          src={image}
+          alt={name}
+          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+        />
 
-                {/* Top Badges */}
-                <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
-                    {/* Process Badge */}
-                    <span className="bg-white/95 backdrop-blur-sm text-stone-800 text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-xs">
-                        {process} Process
-                    </span>
+        {/* Dark Gradient Overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
 
-                    {/* Cupping Score Badge */}
-                    <span className="bg-[#0C6052] text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1">
-                        <Award size={13} className="text-[#3BAA3E]" />
-                        <span>{score} PTS</span>
-                    </span>
-                </div>
+        {/* Top Badges */}
+        <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
+          {/* Process Badge */}
+          <span className="bg-white/95 backdrop-blur-md text-stone-900 text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-xs">
+            {process}
+          </span>
 
-                {/* Bottom Roast Level Overlay on Image */}
-                <div className="absolute bottom-3 left-3.5 flex items-center gap-1.5 text-white text-xs font-medium bg-black/50 backdrop-blur-xs px-2.5 py-1 rounded-lg">
-                    <Flame size={14} className="text-amber-400" />
-                    <span>{roast}</span>
-                </div>
-            </div>
-
-            {/* Card Content */}
-            <div className="p-6 flex-1 flex flex-col justify-between">
-                <div className="space-y-3">
-
-                    {/* Region & Altitude */}
-                    <div className="flex items-center gap-1.5 text-xs text-stone-500 font-medium">
-                        <MapPin size={14} className="text-[#0C6052] shrink-0" />
-                        <span className="truncate">{region}</span>
-                        <span>•</span>
-                        <span className="shrink-0">{altitude}</span>
-                    </div>
-
-                    {/* Coffee Name */}
-                    <h3 className="text-xl font-bold text-stone-900 group-hover:text-[#0C6052] transition-colors leading-snug">
-                        {name}
-                    </h3>
-
-                    {/* Tasting Notes Chips */}
-                    <div className="pt-1">
-                        <p className="text-[11px] uppercase tracking-wider font-semibold text-stone-400 mb-1.5">
-                            Flavor Profile:
-                        </p>
-                        <div className="flex flex-wrap gap-1.5">
-                            {flavorNotes.map((note) => (
-                                <span
-                                    key={note}
-                                    className="bg-[#0C6052]/5 text-[#0C6052] text-xs font-medium px-2.5 py-1 rounded-md border border-[#0C6052]/10"
-                                >
-                                    {note}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Footer: Packaging info & Inquiry Button */}
-                <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between gap-3">
-                    <div className="text-left">
-                        <p className="text-[11px] text-stone-400 font-medium">Export Packing</p>
-                        <p className="text-xs font-semibold text-stone-700 truncate max-w-[150px] sm:max-w-[170px]">
-                            {packageType}
-                        </p>
-                    </div>
-
-                    <a
-                        href="#quote"
-                        className="inline-flex items-center gap-1.5 bg-[#0C6052] text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-[#08483D] transition-colors shrink-0 group/btn"
-                    >
-                        <span>Inquire</span>
-                        <ArrowUpRight size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                    </a>
-                </div>
-
-            </div>
-
+          {/* Cupping Score Badge */}
+          <span className="bg-[#0C6052] text-white text-xs font-extrabold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 border border-white/20">
+            <Award size={13} className="text-[#85E288]" />
+            <span>{score} PTS</span>
+          </span>
         </div>
-    );
+
+        {/* Bottom Roast & Price Tag */}
+        <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between text-white text-xs font-semibold">
+          <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg">
+            <Flame size={13} className="text-amber-400" />
+            <span>{roast}</span>
+          </div>
+          {fobPriceRange && (
+            <span className="bg-[#0C6052]/90 backdrop-blur-md text-white text-[11px] px-2.5 py-1 rounded-lg font-bold">
+              {fobPriceRange.split("-")[0]} / kg
+            </span>
+          )}
+        </div>
+
+        {/* Quick View Hover Indicator */}
+        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+          <div className="bg-white/95 text-stone-900 px-4 py-2 rounded-full font-bold text-xs flex items-center gap-2 shadow-lg backdrop-blur-xs transform scale-95 group-hover:scale-100 transition-transform">
+            <Eye size={15} className="text-[#0C6052]" />
+            <span>View Full Specs</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Card Content */}
+      <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+        <div className="space-y-3">
+          {/* Region & Altitude */}
+          <div className="flex items-center gap-1.5 text-xs text-stone-500 font-medium">
+            <MapPin size={14} className="text-[#0C6052] shrink-0" />
+            <span className="truncate">{region}</span>
+            <span>•</span>
+            <span className="shrink-0">{altitude}</span>
+          </div>
+
+          {/* Coffee Name */}
+          <h3 className="text-xl font-bold text-stone-900 group-hover:text-[#0C6052] transition-colors leading-snug">
+            {name}
+          </h3>
+
+          {/* Description */}
+          {description && (
+            <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
+              {description}
+            </p>
+          )}
+
+          {/* Tasting Notes Chips */}
+          <div className="pt-1">
+            <p className="text-[11px] uppercase tracking-wider font-bold text-stone-400 mb-2">
+              Tasting Notes:
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {flavorNotes.slice(0, 4).map((note) => (
+                <span
+                  key={note}
+                  className="bg-[#0C6052]/8 text-[#0C6052] text-xs font-semibold px-2.5 py-1 rounded-lg border border-[#0C6052]/15"
+                >
+                  {note}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Footer: Packaging info & Actions */}
+        <div className="pt-4 border-t border-stone-100 flex items-center justify-between gap-2">
+          <div className="text-left">
+            <p className="text-[10px] text-stone-400 uppercase tracking-wider font-bold">Standard Packing</p>
+            <p className="text-xs font-bold text-stone-700 truncate max-w-[130px] sm:max-w-[150px]">
+              {packageType}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleInquire}
+              className="inline-flex items-center gap-1 bg-[#0C6052] text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-[#08483D] shadow-xs hover:shadow-md transition-all group/btn hover:scale-105 cursor-pointer"
+            >
+              <span>Inquire</span>
+              <ArrowUpRight size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
